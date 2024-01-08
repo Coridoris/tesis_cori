@@ -1,0 +1,196 @@
+\documentclass[11pt]{book}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[spanish]{babel}
+\usepackage{iiit_thesis}
+\usepackage{cite}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{subfig}
+\usepackage{notoccite}
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref} 
+\usepackage[toc,page]{appendix}
+\usepackage{comment}
+\usepackage{pdfpages}
+\usepackage{siunitx}
+%\usepackage{subcaption}
+\usepackage{float}
+\usepackage{MnSymbol}
+\usepackage[labelfont=bf]{caption}
+\captionsetup{labelfont=bf}
+
+%\usepackage[table,xcdraw]{xcolor}
+
+
+\newcommand{\img}[4]{\begin{figure}[H]\centering \includegraphics[width=#2\textwidth]{#1} \caption{#3} \label{#4} \end{figure}}
+
+%roman sections
+%\renewcommand{\thechapter}{\Roman{chapter}}
+%\renewcommand\thesection{\thechapter.\Roman{section}}
+\renewcommand\thesubsection{\Alph{subsection}}
+
+%fontsize of chapter
+\usepackage{titlesec}    
+\titleformat{\chapter}[display]
+{\normalfont%
+    \centering\LARGE% %change this size to your needs for the first line
+    \bfseries}{\centering\chaptertitlename\ \thechapter}{20pt}{%
+    \huge %change this size to your needs for the second line
+    }
+    
+%header
+
+\newcounter{anexo}[section]
+\newenvironment{anexo}{\refstepcounter{anexo}\par\medskip\noindent
+   \textbf{ANEXO~\theanexo.} \rmfamily}{\medskip}
+ \renewcommand{\theanexo}{\Alph{anexo}}
+\newcounter{apendice}[section]
+\newenvironment{apendice}{\refstepcounter{apendice}\par\medskip\noindent
+   \textbf{APÉNDICE~\theapendice.} \rmfamily}{\medskip}
+ \renewcommand{\theapendice}{\Alph{apendice}}
+
+
+
+\graphicspath{{images/}{./}} % To include images in other directories
+
+%------------------------------------------------
+% To reduce separation in itemize and enumerate
+% \setlist[itemize]{noitemsep} % can include 'nolistsep' also
+% \setlist[enumerate]{noitemsep}
+
+%------------------------------------------------
+% Settings for Abbreviations and Symbols list
+\usepackage[style=super,automake,nogroupskip,nopostdot,symbols,sort=standard,toc=false]{glossaries-extra}
+\setglossarystyle{super}
+\setabbreviationstyle[acronym]{long-short}
+  % \centering
+  \renewenvironment{theglossary}%
+    {\tablehead{}\tabletail{}%
+     \begin{supertabular}{p{4cm}p{\glsdescwidth}}}%
+    {\end{supertabular}}%
+\makeglossaries
+\loadglsentries{acronyms}
+
+%-------------------------------------------------
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+\renewcommand{\baselinestretch}{1.2}
+\onecolumn
+%
+\makeatletter
+\def\ignorecitefornumbering#1{%
+     \begingroup
+         \@fileswfalse
+         #1%                     % do \cite comand
+    \endgroup
+}
+\makeatother
+
+%-------------------------------------------------
+% Custom commands
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\gt}{\gamma_{\text{th}}}
+\newcommand\txtblue[1]{{\color{blue}#1}}
+%--------------------------------------------------------
+
+
+
+
+
+\begin{document}
+\renewcommand{\tablename}{Tabla}
+\pagenumbering{roman}
+%% TITLE PAGE
+\input{sections/titlePage.tex}
+
+
+
+%------------------------------------------------
+%\input{sections/certificate.tex}
+\mastersthesis
+% \renewcommand{\baselinestretch}{1.5}
+%
+% ABSTRACT PAGE
+%\chapter*{Resumen}
+%\label{ch:abstract}
+%\input{sections/abstract.tex}
+%
+\tableofcontents
+%\listoffigures
+%\let\cleardoublepage\clearpage
+%\listoftables
+%\printglossary[type=\acronymtype,title=Abbreviations,nonumberlist]
+%\printunsrtglossary[type=symbols]
+
+%--------------------------------------------------------
+% 'List of Publications'
+%\chapter*{Lista de Publicaciones Relacionadas}
+%\label{ch:relatedPubs}
+%\input{sections/relatedPapers.tex}
+
+%\chapter*{Agradecimientos}
+%\input{sections/agradecimientos}
+
+%--------------------------------------------------------
+%\chapter{Introducción}
+%\label{ch:intro}
+%\input{sections/ch1.tex}
+
+%--------------------------------------------------------
+%\chapter{Materiales y métodos}
+%\label{ch:ch1}
+%\input{sections/ch2.tex}
+
+%--------------------------------------------------------
+\chapter{Resultados}
+\label{ch:ch2}
+\input{sections/ch3.tex}
+
+%-------------------------------------------------------
+%\chapter{Discusión}
+%\label{ch:ch3}
+%\input{sections/ch4.tex}
+
+
+%-------------------------------------------------------
+%\chapter{Conclusiones y perspectivas}
+%\label{ch:ch4}
+%\\input{sections/conclusion.tex}
+
+%--------------------------------------------------------
+
+
+%--------------------------------------------------------
+%\bibliographystyle{IEEEtran}
+%\bibliography{IEEEabrv,cite.bib}{}
+
+%__________________________________________________________
+%apendices
+%\chapter{Apéndices}
+%\input{sections/apendices}
+
+% %--------------------------------------------------------
+% % 'Publication 1'
+% \chapter*{Publications}
+% \chapter*{Publication 1}
+% \addtocontents{toc}{\protect{\addvspace{3.0ex plus 1pt}}}
+% \addcontentsline{toc}{chapter}{\protect{Publication 1}}
+% \input{sections/paper1.tex}
+% \includepdf[pages={-}]{papers/paper1.pdf}
+% %
+% %--------------------------------------------------------
+% % 'Publication 2'
+% \chapter*{Publication 2}
+% \addtocontents{toc}{\protect{\addvspace{3.0ex plus 1pt}}}
+% \addcontentsline{toc}{chapter}{\protect{Publication 2}}
+% \input{sections/paper2.tex}
+% \includepdf[pages={-}]{papers/paper2.pdf}
+
+\end{document}

@@ -1017,9 +1017,12 @@ plt.savefig(path_imagenes+'/' + 'primera_tercera_persona', transparent=True)
 plt.show()
 
 
-#%% ANOVA
-
+#%% data ANOVA y corr
+entrevista = "Primera"
+tiempo_elim = [2]
 #path_conautopercepcion_todas = 'C:/Users/Usuario/Desktop/Cori/Tesis/ELcsv nuevo/ELcsv_conautopercepcion_sinoutliers_dostiempos.csv'
+#para github
+path_conautopercepcion_todas = 'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/ELcsv nuevo/ELcsv_conautopercepcion_sinoutliers_dostiempos.csv'
 
 df = pd.read_csv(path_conautopercepcion_todas)
 
@@ -1027,17 +1030,18 @@ df = df.drop(['Valencia pysent', 'Valencia e intensidad pysent'], axis = 1)
 
 cond_elim = ['antesdevenir']
 
-tiempo_elim = [4]
+
+df = df[~df['Tiempo'].isin(tiempo_elim)]
 
 df_sin_filler = df[~df['Condición'].isin(cond_elim)]
 
-#df = df[~df['Tiempo'].isin(tiempo_elim)]
+
 
 #condiciones_a_eliminar = ['campeones_del_mundo', 'antesdevenir']
 
 # Filtramos las condiciones que creo que dan las diferencias de las medias
 #df_sin_camp_ni_filler = df[~df['Condición'].isin(condiciones_a_eliminar)]
-
+#%% ANOVA
 variables_dependientes = list(df_sin_filler.columns)[2:]
 
 #aov = pg.rm_anova(dv = 'Nro palabras únicas', within = 'Condición', subject='Sujetos', data=df, detailed=True, effsize="np2")
@@ -1192,24 +1196,33 @@ mapping = {
 # Aplicar el mapeo a la columna 'Texto' y crear una nueva columna 'Numerico'
 df['Condición'] = df['Condición'].map(mapping)
 
-df = df.drop(['Sujetos', 'Condición'], axis=1)
+df = df.drop(['Sujetos', 'Condición', 'Tiempo'], axis=1)
 
 #%% correlacion
 
+path_imagenes = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/Correlacion'
+
+color_corr = 'BrBG' #'RdYlBu'
+
+#'PuOr'  #'BrBG_r' 'PiYG'  'PRGn' 
+
+ #"coolwarm_r"  #"bwr_r" con alpha 0.5  #Spectral_r" #RdYlGn_r #'RdGy'
+
 variables_corr = list(df.columns)
-variables_x = [var[:6] for var in variables_corr]
+variables_corr_label = ['Recuerdo', 'Val.', 'Int.', 'Int. y val.', 'Palabras', '1° persona', '3° persona', 'Sust.', 'Verb.', 'Adj.', 'Adv.', 'Num.', 'Nom. prop.', 'Pos.', 'Neg.', 'Int.', 'Val.', 'Int. y val.', 'Cohe. d = 1', 'Cohe. d = 2', 'Cohe. d = 3', 'Nodos', 'Comunidades', 'Diámetro', 'Grado', 'Transitividad', 'ASP', 'Coef. clust.', 'L1', 'L2', 'L3', 'Densidad', 'Internos', 'Externos']
+variables_x = [var[:6] for var in variables_corr_label]
 
 # Calcular la matriz de correlación
 correlation_matrix = df.corr()
 
 # Crear un mapa de calor (heatmap) de la matriz de correlación
-plt.figure(figsize=(12, 9))
-sns.heatmap(correlation_matrix, cmap='coolwarm', linewidths=.5, xticklabels = variables_x, yticklabels = variables_corr)
-plt.rc('font', size=25)
-plt.xticks(fontsize=17)
-plt.yticks(fontsize=17)
-# Mostrar el mapa de calor
-plt.show()
+# plt.figure(figsize=(12, 9))
+# sns.heatmap(correlation_matrix, cmap=color_corr, linewidths=.5, xticklabels = variables_x, yticklabels = variables_corr_label)
+# plt.rc('font', size=25)
+# plt.xticks(fontsize=17)
+# plt.yticks(fontsize=17)
+# # Mostrar el mapa de calor
+# plt.show()
 
 #plt.savefig(path_imagenes + "/matriz_corr.png", bbox_inches='tight', pad_inches=0, transparent=True)
 
@@ -1264,14 +1277,33 @@ for i, var1 in enumerate(correlation_matrix):
         if (var1, var2) in list(result_df_sinnans['Tuplas']):
             correlation_matrix[var1][var2] = 0
             correlation_matrix[var2][var1] = 0
-plt.figure(figsize=(12, 9))
-sns.heatmap(correlation_matrix, cmap='coolwarm', linewidths=.5, xticklabels = variables_x, yticklabels = variables_corr)
-plt.rc('font', size=25)
-plt.xticks(fontsize=17)
-plt.yticks(fontsize=17)
+plt.figure(figsize=(12*1.2, 9*1.2))
+sns.heatmap(correlation_matrix, cmap=color_corr, linewidths=.5, xticklabels = variables_x, yticklabels = variables_corr_label)#, cbar_kws={"fontsize": 20})#, alpha = 0.5)
+#plt.rc('font', size=23)
+plt.tick_params(labelsize=20)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.tight_layout()
 # Mostrar el mapa de calor
 plt.show()
 
-plt.savefig(path_imagenes + "/matriz_corr_significativa.png", bbox_inches='tight', pad_inches=0, transparent=True)
+#plt.savefig(path_imagenes + "/matriz_corr_significativa.png", bbox_inches='tight', pad_inches=0, transparent=True)
 # Guardar el DataFrame en un archivo CSV
 #result_df.to_csv(f'C:/Users/Usuario/Desktop/Cori/Tesis/{entrevista}_entrevista/ANOVA y correlacion/p_val_matriz_corr.csv', index=False)
+plt.savefig(path_imagenes + f'/2correlacion_{entrevista}_transparente.png', transparent = True)
+plt.savefig(path_imagenes + f'/2correlacion_{entrevista}.png')
+plt.savefig(path_imagenes + f'/2correlacion_{entrevista}.pdf')
+
+#%%
+
+fig, ax = plt.subplots(figsize=(20,20))
+ax = sns.heatmap(correlation_matrix, cmap=color_corr, linewidths=.5, xticklabels = variables_x, yticklabels = variables_corr_label)#, cbar_kws={"fontsize": 20})#, alpha = 0.5)
+ax.figure.axes[-1].yaxis.label.set_size(1)
+ax.tick_params(labelsize=1)
+
+#plt.tick_params(labelsize=5)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.tight_layout()
+# Mostrar el mapa de calor
+plt.show()

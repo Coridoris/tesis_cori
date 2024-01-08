@@ -1,0 +1,9 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Resultados}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Participantes}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Variables de las herramientas de NPL}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Correlación entre las variables del relato y de autopercepción}{6}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Busqueda de los cuantificadores usando PCA y aprendizaje no supervisado (o clustering)}{9}{section.1.4}%
+\contentsline {subsection}{\numberline {A}Memoria autobiográfica contra memoria no consolidada}{9}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {B}Memorias con distinta valencia e intensidad}{9}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Comparación entre ambos tiempos}{10}{section.1.5}%
