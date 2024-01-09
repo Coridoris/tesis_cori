@@ -152,7 +152,7 @@ Inicialmente se hacía reducción de dimensionalidad y con todas las componentes
 
 Solo con las variables mas importantes que se obtenian de las componentes principales que optimizaban la validacióne externa para agrupar los relatos de presencialidad y control se seguía el mismo procedimiento para agrupar los relatos restantes (campeones, CFK y Arabia), lo cual se puede encontrar en la subsección \ref{sec:PCscamparCFK}.
 
-\colorbox{yellow}{pongo esto aca no? Y en métodos solo explico el algoritmo de reducción usado y el de agrupamiento, no explico todo eso...}
+\colorbox{yellow}{pongo esto aca no? Y en métodos solo explico el algoritmo de reducción usado y el de agrupamiento, no esto}
 
 \colorbox{yellow}{en caso de mover esto a métodos, qué escribo aca para introducir?}
 
@@ -160,6 +160,29 @@ Solo con las variables mas importantes que se obtenian de las componentes princi
 \label{sec:PCspresvscontrol}
 solo con kmeans mostrar 
 primero control vs presencial slihouette para definición de k, mostrar varianza acumulada vs nro PCs, contar que para definir nro PCS se barrió buscando maximizar R (ese gráfico) y PC2 vs PC1 color y forma para cluster y condición, valor de R y matriz de confusión en pie de figura. Mostrar las PCs que usé y hablar de las variables mas importantes de ahí. Mostrar como queda todo en el segundo tiempo usando ESTAS PCs.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf} 
+    \caption{Definición de k \textbf{(a)}  \textbf{(b)}}
+\label{fig:cap3_defk_controlpres}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf} 
+    \caption{Definición número de componentes principales \textbf{(a)}  \textbf{(b)}}
+\label{fig:cap3_defpcscontrolpres}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf} 
+    \caption{Componentes principales de pres y control \textbf{(a)}  \textbf{(b)}}
+\label{fig:cap3_9PCscontrolpres}
+\end{figure}
+
+
 \subsection{Memorias con distinta valencia e intensidad}
 \label{sec:PCscamparCFK}
 Después se busca separar cfk, ar y campeones, primero buscamos usando todas las vars nro pcs vs k silhouette y se definió k, discutir que se ve que aumentar k deja campeones entero pero cfk y arabia quedan juntas, hablar de que son parecidas en emotividad y que se las pasa a considerar un único relato. Dsp  n vs nro pcs una matriz del R para definir n y nro PCs, decir las variables que se eliminan y mostrar varianza acumulada vs nro PCs y dsp las PCs que maximizan R. Mostrar PC1 vs PC2 con los colores y marcadores con condicion y cluster y en pie el R y la matriz de confusión. Mostrar en el segundo tiempo este mismo gráfico.

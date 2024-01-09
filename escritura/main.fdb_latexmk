@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1704723199.17863 "c:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/escritura/main.tex" "main.pdf" "main" 1704723204.09986 0
+["pdflatex"] 1704769573.05171 "c:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/escritura/main.tex" "main.pdf" "main" 1704769578.67988 0
   "C:/Users/Usuario/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1704720580 91068 d22bcba8c7c4e85b07636585e11851ac ""
   "C:/Users/Usuario/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1704720346 24142892 2208a1c03a82be3cb7d0c219da46d999 ""
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -201,14 +201,17 @@
   "figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales2op2_boxplot.pdf" 1704729250 31769 fe74c2164d34094f3c0851590da3ff9a ""
   "figures/ch03/Herramientas NPL/Primer tiempo/Sin control/pysentimiento_tresbarras.pdf" 1704729250 14564 4bee762a4ebd8801b68c9c33d2a3450f ""
   "figures/ch03/Herramientas NPL/Primer tiempo/Sin control/sentimiento_op2_boxplot.pdf" 1704729250 30764 fddcb617a52d07205d4f73536a4703c9 ""
+  "figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf" 1704769400 31493 f63609692bdc7ed241d08edbbae3d22c ""
+  "figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf" 1704767540 17207 8da8fac7eff3ba4d43144966dacd013d ""
+  "figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf" 1704768804 18270 d5545af2644fc0af80e4aa2c045cd2c6 ""
   "iiit_thesis.sty" 1704729250 36042 d293202edd893d30462b8ba7a57c745d ""
-  "main.aux" 1704723203 8906 149c527534db875a543a41940709a276 "pdflatex"
-  "main.glo" 1704723202 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.out" 1704723203 2229 72c81e197dcdb99f980fd10ce9e69a2f "pdflatex"
-  "main.slo" 1704723202 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.aux" 1704769578 9874 235037c70131e88639e7c81b691560ee "pdflatex"
+  "main.glo" 1704769576 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.out" 1704769578 2229 72c81e197dcdb99f980fd10ce9e69a2f "pdflatex"
+  "main.slo" 1704769576 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "main.tex" 1704729250 5442 7c71f64f6cbf2b2f0acacc9df8f45c10 ""
-  "main.toc" 1704723203 856 bb90e0447daf54eec3a51f19773ba5a7 "pdflatex"
-  "sections/ch3.tex" 1704723198 23577 384068af03282e4d26e8ff95fad700e4 ""
+  "main.toc" 1704769578 856 bb90e0447daf54eec3a51f19773ba5a7 "pdflatex"
+  "sections/ch3.tex" 1704769563 24351 acc6f2765b6f3037f8b6cec0a3503aec ""
   "sections/titlePage.tex" 1704723102 2265 b7aaeeaa615d091bca1497ca7781ea28 ""
   (generated)
   "main.aux"
