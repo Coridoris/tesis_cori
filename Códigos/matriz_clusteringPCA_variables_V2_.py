@@ -12,6 +12,7 @@ import numpy as np
 import seaborn as sns
 from tqdm import tqdm
 import matplotlib as npl
+import matplotlib.patches as mpatches
 
 # Clase para realizar componentes principales
 from sklearn.decomposition import PCA
@@ -177,7 +178,7 @@ def PCA_estandarizando(data, n_components = None, graph_var = True, max_var = 0.
     
         center_value= 0
         plt.figure(figsize = (30, len(variables)))
-        sns.heatmap(df_vars_1, cmap='BuBG', fmt=".2f", cbar=True, linewidths=0.5, linecolor="black", center = center_value) #cbar_kws={"shrink": 0.75}) #"YlGnBu,  annot=True
+        sns.heatmap(df_vars_1, cmap='BrBG', fmt=".2f", cbar=True, linewidths=0.5, linecolor="black", center = center_value) #cbar_kws={"shrink": 0.75}) #"YlGnBu,  annot=True
     
     
         plt.yticks(rotation=0) #plt.yticks(variables)
@@ -398,11 +399,16 @@ def markerstemas_colorcluster(labels, X, temaslabels, indices, save = None, cent
     ind_fil = indices[4]
     
     # Hacemos un scatter plot de cada uno de los datos
-    ax.scatter(X[ind_cfk[0][0]:ind_cfk[0][1], 0], X[ind_cfk[0][0]:ind_cfk[0][1], 1], marker = "o", c=labels[ind_cfk[0][0]:ind_cfk[0][1]], label = temaslabels[0])
-    ax.scatter(X[ind_camp[0][0]:ind_camp[0][1], 0], X[ind_camp[0][0]:ind_camp[0][1], 1], marker = "v", c=labels[ind_camp[0][0]:ind_camp[0][1]], label = temaslabels[1])
-    ax.scatter(X[ind_fil[0][0]:ind_fil[0][1], 0], X[ind_fil[0][0]:ind_fil[0][1], 1], marker = "s", c=labels[ind_fil[0][0]:ind_fil[0][1]], label = temaslabels[2])
-    ax.scatter(X[ind_pres[0][0]:ind_pres[0][1], 0], X[ind_pres[0][0]:ind_pres[0][1], 1],  marker = "*", c=labels[ind_pres[0][0]:ind_pres[0][1]], label = temaslabels[3])
-    ax.scatter(X[ind_ar[0][0]:ind_ar[0][1], 0], X[ind_ar[0][0]:ind_ar[0][1], 1], marker = "d",  c=labels[ind_ar[0][0]:ind_ar[0][1]], label = temaslabels[4])
+    if ind_cfk != []:
+        ax.scatter(X[ind_cfk[0][0]:ind_cfk[0][1], 0], X[ind_cfk[0][0]:ind_cfk[0][1], 1], marker = "o", c=labels[ind_cfk[0][0]:ind_cfk[0][1]], label = temaslabels[0])
+    if ind_camp != []:
+        ax.scatter(X[ind_camp[0][0]:ind_camp[0][1], 0], X[ind_camp[0][0]:ind_camp[0][1], 1], marker = "v", c=labels[ind_camp[0][0]:ind_camp[0][1]], label = temaslabels[1])
+    if ind_fil != []:
+        ax.scatter(X[ind_fil[0][0]:ind_fil[0][1], 0], X[ind_fil[0][0]:ind_fil[0][1], 1], marker = "s", c=labels[ind_fil[0][0]:ind_fil[0][1]], label = temaslabels[2])
+    if ind_pres !=[]:
+        ax.scatter(X[ind_pres[0][0]:ind_pres[0][1], 0], X[ind_pres[0][0]:ind_pres[0][1], 1],  marker = "*", c=labels[ind_pres[0][0]:ind_pres[0][1]], label = temaslabels[3])
+    if ind_ar != []:
+        ax.scatter(X[ind_ar[0][0]:ind_ar[0][1], 0], X[ind_ar[0][0]:ind_ar[0][1], 1], marker = "d",  c=labels[ind_ar[0][0]:ind_ar[0][1]], label = temaslabels[4])
     
     
     ax.set_xlabel('Primer componente principal', fontsize = 20)
@@ -482,7 +488,7 @@ def markerscluster_colortemas(labels, X, temaslabels, indices, color, save = Non
 
 def markerscluster_colortemas_filler_vs_pres(labels, X, indices, color, save = None, centroids =  None, title =  None):
     temas_label = ["Control", "Presencial"]
-    fig, ax = plt.subplots(figsize=(20, 7))
+    fig, ax = plt.subplots(figsize=(12, 6))
 
     ind_camp = indices[0]
     ind_pres = indices[1]
@@ -509,34 +515,52 @@ def markerscluster_colortemas_filler_vs_pres(labels, X, indices, color, save = N
 
 
         if i in [0, ind_fil[0][0], ind_pres[0][1]]:
-            ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index], label = temas_label[tema_contador])
+            ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])#, label = temas_label[tema_contador])
             tema_contador = tema_contador + 1
         else:
             ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])
     
     #buscando centroids a mano
     # if type(centroids) == np.ndarray:
-    #     for j, centroid in enumerate(centroids):
-    #         ax.scatter(centroid[0], centroid[1], marker=marcadores[j], s=200, linewidths=1,
-    #                     c='black', edgecolors='black')
+    #      for j, centroid in enumerate(centroids):
+    #          ax.scatter(centroid[0], centroid[1], marker=marcadores[j], s=200, linewidths=1,
+    #                      c='black', edgecolors='black')
     
     #usando los centroids que te da kmeans
     #if type(centroids) == np.ndarray:
-    for j, centroid in enumerate(centroids):
-        ax.scatter(centroids[:, 0], centroids[:, 1], marker=marcadores[j], s=200, linewidths=1,
-                    c='black', edgecolors='black')
+    #for j, centroid in enumerate(centroids):
+    #ax.scatter(centroids[:, 0], centroids[:, 1], marker=marcadores, s=200, linewidths=1,
+     #               c='black', edgecolors='black')
+    #usando los centroids que te da kmeans
+    for j, (x, y) in enumerate(zip(centroids[:, 0], centroids[:, 1])): #color = colores[j-1]  le deja el color del tema mayoritario del cluster
+        plt.scatter(x, y, marker=marcadores[j % len(marcadores)], s=200, c='w', edgecolors='black', linewidths=3)
+   
     
+   # legend
+    num_of_groups = 2
+    color = np.array([colores,]*num_of_groups).transpose()
+    label_cluster = ['C1','C2']
+    label_tema = ['Control', 'Presencial']
+    tem = [mpatches.Patch(color=color[i, 0]) for i in range(num_of_groups)]
+    clust = [plt.plot([], [], marcadores[i], markersize=12, markerfacecolor='w',
+                        markeredgecolor='k')[0] for i in range(num_of_groups)]
     
+    ax.legend(tem + clust, label_tema + label_cluster, loc='upper left', bbox_to_anchor=(1, 1), fontsize = 15)
 
     ax.set_xlabel('Primer componente principal', fontsize = 20)
     ax.set_ylabel('Segunda componente principal', fontsize = 20)
-    ax.legend(fontsize = 15)
+    #ax.legend(fontsize = 15)
     ax.tick_params(axis='x', labelsize=15)  
     ax.tick_params(axis='y', labelsize=15)
     
+    plt.tight_layout()
+    
     if save != None:
-        path_imagenes = 'C:/Users/Usuario/Desktop/Cori/Tesis/Graficos/Cluster'                                                
-        plt.savefig(path_imagenes + f'/6PCA_{save}_markersclusters_colortemas.png')   
+        path_imagenes = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/PCA_clustering/Presencial_control'                                                
+        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas_transparente.png', transparent = True) 
+        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas.png') 
+        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas.pdf') 
+
 
     plt.show()
     
@@ -545,6 +569,92 @@ def markerscluster_colortemas_filler_vs_pres(labels, X, indices, color, save = N
     
     return 'ok'
 
+
+def markerscluster_colortemas_cfkArCamp(labels, X, indices, color, save = None, centroids =  None, title =  None):
+    temas_label = ["Control", "Presencial"]
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    ind_camp = indices[0]
+    ind_pres = indices[1]
+    ind_cfk = indices[2]
+    ind_ar = indices[3]
+    ind_fil = indices[4]
+    # Definir colores y marcadores
+    colores = color
+    color_cfk = color[2]
+    color_ar = color[3]
+    color_camp = color[0]
+    colores = [color_cfk, color_camp, color_ar]
+    
+    
+    marcadores = ['o', 'v', 's']#, '*', 'd']
+
+    # Suponiendo que kmeans.labels_ contiene las etiquetas de clústeres
+    tema_contador = 0
+    for i in range(len(X)):
+        cluster_index = labels[i]
+        if i < ind_cfk[0][1]:
+            color_index = 0
+        elif i < ind_camp[0][1]:
+            color_index = 1
+        else:
+            color_index = 2
+
+
+        #if i in [0, ind_fil[0][0], ind_pres[0][1]]:
+        #    ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])#, label = temas_label[tema_contador])
+        #    tema_contador = tema_contador + 1
+        #else:
+        ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])
+    
+    #buscando centroids a mano
+    # if type(centroids) == np.ndarray:
+    #      for j, centroid in enumerate(centroids):
+    #          ax.scatter(centroid[0], centroid[1], marker=marcadores[j], s=200, linewidths=1,
+    #                      c='black', edgecolors='black')
+    
+    #usando los centroids que te da kmeans
+    #if type(centroids) == np.ndarray:
+    #for j, centroid in enumerate(centroids):
+    #ax.scatter(centroids[:, 0], centroids[:, 1], marker=marcadores, s=200, linewidths=1,
+     #               c='black', edgecolors='black')
+    #usando los centroids que te da kmeans
+    for j, (x, y) in enumerate(zip(centroids[:, 0], centroids[:, 1])): #color = colores[j-1]  le deja el color del tema mayoritario del cluster
+        plt.scatter(x, y, marker=marcadores[j % len(marcadores)], s=200, c='w', edgecolors='black', linewidths=3)
+   
+    
+   # legend
+    num_of_groups = 2
+    color = np.array([colores,]*num_of_groups).transpose()
+    label_cluster = ['C1','C2']
+    label_tema = ['CFK', 'Campeones', "Arabia"]
+    tem = [mpatches.Patch(color=color[i, 0]) for i in range(num_of_groups)]
+    clust = [plt.plot([], [], marcadores[i], markersize=12, markerfacecolor='w',
+                        markeredgecolor='k')[0] for i in range(num_of_groups)]
+    
+    ax.legend(tem + clust, label_tema + label_cluster, loc='upper left', bbox_to_anchor=(1, 1), fontsize = 15)
+
+    ax.set_xlabel('Primer componente principal', fontsize = 20)
+    ax.set_ylabel('Segunda componente principal', fontsize = 20)
+    #ax.legend(fontsize = 15)
+    ax.tick_params(axis='x', labelsize=15)  
+    ax.tick_params(axis='y', labelsize=15)
+    
+    plt.tight_layout()
+    
+    if save != None:
+        path_imagenes = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/PCA_clustering/Presencial_control'                                                
+        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas_transparente.png', transparent = True) 
+        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas.png') 
+        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas.pdf') 
+
+
+    plt.show()
+    
+    if title != None:
+        ax.set_title(f"{title}", fontsize = 20)
+    
+    return 'ok'
 
 
 def indices_condiciones(path, condiciones = None, drop = None):
@@ -872,7 +982,21 @@ color_3 = rgb_to_hex(palette[4])
 
 color_silhouette = [color_1, color_2, color_3]
 
-rainbow_palette = sns.color_palette("rainbow", n_colors=7)
+palette = sns.color_palette("PuBu", n_colors=5) #
+
+#palette = sns.color_palette("autumn_r", n_colors=2)
+
+# Asignar colores a las variables
+color_1 = rgb_to_hex(palette[2])
+color_2 = rgb_to_hex(palette[3])
+color_3 = rgb_to_hex(palette[4])
+
+color_silhouette_camp = [color_1, color_2, color_3]
+
+
+rainbow_palette = sns.color_palette("Spectral_r", n_colors=7)
+
+#rainbow_palette = sns.color_palette("rainbow", n_colors=7)
 
 #rainbow_palette = sns.color_palette("autumn_r", n_colors=2)
 
@@ -886,7 +1010,7 @@ color_4 = rgb_to_hex(rainbow_palette[5])
 color_5 = rgb_to_hex(rainbow_palette[6])
 
 
-colores_condiciones = [color_1, color_2, color_3, color_4, color_5]
+colores_condiciones = [color_1, color_4, color_2, color_3, color_5]
 
 color_campeones = color_1
 color_presencial = color_2
@@ -896,6 +1020,7 @@ color_filler = color_5
 
 
 path_imagenes = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/PCA_clustering/Presencial_control'
+path_imagenes_cfk_ar_camp = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/PCA_clustering/CFK_Ar_camp'
 
 
 #%% path data 
@@ -941,9 +1066,15 @@ df_vars = df_vars.drop(['Sujetos', 'Condición'] + eliminamos_pysent, axis=1)
 
 df_vars = df_vars.dropna()
 #%% PCA
-X_pca, pca, evr = PCA_estandarizando(df_vars)
+X_pca, pca, evr = PCA_estandarizando(df_vars, graph_var = False, graph_PCs = False)
 varianza_acumulada = np.cumsum(evr)
-#%% figuras silhouette
+
+
+#%%figuras silhouette
+
+X_pca, pca, evr = PCA_estandarizando(df_vars, graph_var = False, graph_PCs=False)
+varianza_acumulada = np.cumsum(evr)
+
 # Creamos una lista para guardar de los coeficientes de silhouette para cada valor de k
 silhouette_coefficients = []
 
@@ -1026,7 +1157,7 @@ plt.savefig(path_imagenes + '/perfil_silhouette_pres_control_transparente.png', 
 plt.savefig(path_imagenes + '/perfil_silhouette_pres_control.png')
 plt.savefig(path_imagenes + '/perfil_silhouette_pres_control.pdf')
 
-#%%
+#%% las 2 juntas
 
 # Creamos una lista para guardar de los coeficientes de silhouette para cada valor de k
 silhouette_coefficients = []
@@ -1107,7 +1238,125 @@ plt.savefig(path_imagenes + '/silhouette_pres_control_transparente.png', transpa
 plt.savefig(path_imagenes + '/silhouette_pres_control.png')
 plt.savefig(path_imagenes + '/silhouette_pres_control.pdf')
 
-#%% elección nro PCs para filler vs presencial (tarda si kmeans = True)
+#%% figuras silhouette de matriz
+#sola la matriz, no la guardo
+silouette_paraPCs = []
+
+pcs = range(6, 22)#len(df_vars.columns)+1)
+for numero_comp in tqdm(pcs):
+    data = df_vars    
+    X = data.to_numpy()
+    std_scale.fit(X)
+    X_scaled = std_scale.transform(X)
+    pca = PCA(n_components=numero_comp)
+    pca.fit(X_scaled)
+    X_pca = pca.transform(X_scaled)
+
+    silhouette_coefficients = []
+    
+    k_hasta = 10
+    
+    # Se necesita tener al menos 2 clusters y a los sumo N-1 (con N el numero de muestras) para obtener coeficientes de Silohuette
+    for k in range(2, k_hasta):
+         kkkmeans = KMeans(n_clusters=k,  random_state=42)
+         kkkmeans.fit(X_pca)
+         score = silhouette_score(X_pca, kkkmeans.labels_)
+         silhouette_coefficients.append(score)
+    silouette_paraPCs.append(np.asarray(silhouette_coefficients))
+    
+silouette_paraPCs = np.asarray(silouette_paraPCs)
+
+
+fig, ax = plt.subplots(figsize = (15,7))
+im = ax.imshow(silouette_paraPCs.T, cmap='flare_r', interpolation='none', aspect = 'auto')
+
+# Agregar barra de colores
+cbar = fig.colorbar(im, ax=ax, orientation = "horizontal", pad=0.2, label='Coef. de Silhouette prom.')
+
+ax.set_yticks(np.arange(len(silouette_paraPCs[0])), fontsize = 18)
+ax.set_yticklabels([2, 3, 4, 5, 6, 7, 8, 9])
+ax.set_ylabel("Número de clusters", fontsize = 20)
+
+ax.set_xticks(np.arange(len(silouette_paraPCs)), fontsize = 18)
+ax.set_xticklabels(pcs)
+ax.set_xlabel("Número de componentes principales", fontsize = 20)
+
+plt.show()
+
+fig, axs = plt.subplots(1, 2, figsize = (17, 7))
+
+# matriz coef de sil prom
+im = axs[0].imshow(silouette_paraPCs.T, cmap='flare_r', interpolation='none', aspect = 'auto')
+
+# Agregar barra de colores
+cbar = fig.colorbar(im, ax=axs[0], orientation = "horizontal", pad=0.2, label='Coef. de Silhouette prom.')
+
+axs[0].set_yticks(np.arange(len(silouette_paraPCs[0])), fontsize = 18)
+axs[0].set_yticklabels([2, 3, 4, 5, 6, 7, 8, 9])
+axs[0].set_ylabel("Número de clusters", fontsize = 20)
+
+axs[0].set_xticks(np.arange(len(silouette_paraPCs)), fontsize = 18)
+axs[0].set_xticklabels(pcs)
+axs[0].set_xlabel("Número de componentes principales", fontsize = 20)
+
+X_pca, pca, evr = PCA_estandarizando(df_vars,  graph_var = False, graph_PCs = False)
+X = X_pca
+
+range_n_clusters = [2]
+
+yticks = []
+# Iterar sobre el número de clusters
+for i, n_clusters in enumerate(range_n_clusters):
+    # Crear un objeto de agrupamiento KMeans
+    kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+    cluster_labels = kmeans.fit_predict(X)
+
+    # Calcular el coeficiente de silhouette para el conjunto de datos
+    silhouette_avg = silhouette_score(X, cluster_labels)
+    print(f"Para n_clusters = {n_clusters}, el coeficiente de silhouette promedio es: {silhouette_avg}")
+
+    # Calcular los valores de silhouette para cada muestra
+    sample_silhouette_values = silhouette_samples(X, cluster_labels)
+
+    # Crear una gráfica de barras para el perfil de silhouette
+    y_lower = 10
+    for j in range(n_clusters):
+        # Agregar valores de silhouette para cada cluster
+        ith_cluster_silhouette_values = sample_silhouette_values[cluster_labels == j]
+        ith_cluster_silhouette_values.sort()
+        size_cluster_i = ith_cluster_silhouette_values.shape[0]
+        y_upper = y_lower + size_cluster_i
+
+        color = color_silhouette[j]  # Usar el color correspondiente de la paleta "deep"
+        axs[1].fill_betweenx(np.arange(y_lower, y_upper),
+                          0, ith_cluster_silhouette_values,
+                          facecolor=color, edgecolor=color, alpha=0.7)
+
+        # Etiquetas y líneas para cada cluster
+        #ax.text(-0.05, y_lower + 0.5 * size_cluster_i, str(j))
+        yticks.append(y_lower + 0.5 * size_cluster_i)
+        y_lower = y_upper + 10
+
+    # Línea vertical para el coeficiente de silhouette promedio de todos los datos
+    axs[0].text(0.05, 1.14, "(a)", ha='right', va='top', transform=axs[0].transAxes, fontsize = 27)
+    axs[1].text(0.05, 1.1, "(b)", ha='right', va='top', transform=axs[1].transAxes, fontsize = 27)
+    axs[1].set_xlabel("Valor del coeficiente de silhouette")
+    axs[1].set_ylabel("Etiqueta del cluster")
+    axs[1].axvline(x=silhouette_avg, color="k", linewidth = 2.5, linestyle="--", label = "Promedio")
+    axs[1].set_yticks(yticks)  # Borrar etiquetas y
+    axs[1].set_yticklabels(["C1", "C2"])
+    axs[1].legend(fontsize = 17, loc = "lower right")
+    axs[1].tick_params(axis='both', labelsize=19)
+    #ax.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+
+    #plt.title(f"Perfil de Silhouette para n_clusters = {n_clusters}")
+plt.tight_layout()
+plt.show()
+
+plt.savefig(path_imagenes + '/silhouette2_pres_control_transparente.png', transparent = True)
+plt.savefig(path_imagenes + '/silhouette2_pres_control.png')
+plt.savefig(path_imagenes + '/silhouette2_pres_control.pdf')
+#%% elección nro PCs para filler vs presencial (tarda si kmeans = True), deje solo cargado el dato de como da
 # R_pcs = []
 # #R_pcs_kmeans = []
 # R_pcs_metodo = []
@@ -1226,7 +1475,7 @@ plt.savefig(path_imagenes + '/silhouettyRindexe_pres_control.png')
 plt.savefig(path_imagenes + '/silhouetteyRindex_pres_control.pdf')
 
 
-#%% hago una figura de 3 de Rindex y PCs
+#%% hago una figura de 2 de Rindex y PCs
 
 #fig, axs = plt.subplots(1, 2, figsize = (9, 0))
 
@@ -1241,7 +1490,7 @@ ax1.scatter(nro_pcs_prueba, R_pcs_metodo, s = 80, color = color_silhouette[2], z
 ax1.plot(nro_pcs_prueba, R_pcs_metodo, color = color_silhouette[2], zorder = 10)            
 
 ax1.set_xlabel("Nro. PCs", fontsize = 20)
-ax1.set_ylabel("R index", fontsize = 20)
+ax1.set_ylabel("Indice R", fontsize = 20)
 
 ax1.grid(True)
 
@@ -1333,7 +1582,7 @@ plt.savefig(path_imagenes + '/9PCs_pres_control.pdf')
 
 
 
-#%%
+#%%basura
 # si uso valencia pysent max(R_pcs) = 0.256 se da con 10 11 y 20 PCs
 # en todos los casos solo kmedoids da alto
 # con 10 PCs
@@ -1379,7 +1628,7 @@ plt.savefig(path_imagenes + '/9PCs_pres_control.pdf')
 
 #print("con 6")
 #R_clausterizacion(X_pca[:,:6], k, condicion_labels, indices_pres_cfk, kmeans = False, etiquetas_print = True)
-#%%
+#%% preeliminares grafico PC1 vs PC2
 data = X_pca
 length = np.sqrt((data**2).sum(axis=1))[:,None]
 data_norm = data / length
@@ -1393,19 +1642,156 @@ kmeans2.fit(data_norm)
 R_index2mean = adjusted_rand_score(condicion_labels, kmeans2.labels_) 
 
 
-#%%
+#%% grafico PC1 vs PC2
 print(f"Indice R con kmeans {k} y PCA: ", R_index2mean)
 etiquetas(kmeans2.labels_, indices_pres_cfk)
 
 centroids = kmeans2.cluster_centers_
 
-markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, data, indices_pres_cfk, color = colores_condiciones, save = None, centroids = centroids, title =  None)
+markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, data_norm, indices_pres_cfk, color = colores_condiciones, save = "presvscontrol", centroids = centroids, title =  None)
+
+#markerstemas_colorcluster(kmeans2.labels_, data_norm, temas, indices_pres_cfk, save = None, centroids = centroids.T, title =  None)
+
+#%% eleccion de k con silhouette para cfk ar y camp
+#%% data cfjk ar camp
+df = pd.read_csv(path_conautopercepcion_todas)
+
+df = df.dropna()
+
+# Aplicar el mapeo a la columna 'Texto' y crear una nueva columna 'Numerico'
+df['Condición'] = df['Condición'].map(mapping)
+
+df = df[~df['Condición'].isin([5,2])]
+
+condicion_labels, indices_camp_ar_cfk = indices_condiciones(path_conautopercepcion_todas, condiciones = [5, 2])
+               
+#df = df.drop(['Sujetos', 'Condición'] + eliminamos_pysent, axis=1)
+
+if no_autop == True:
+    df = pd.read_csv(path_conautopercepcion_todas)
+    
+    if drop_12 == True:
+        df = df.dropna()
+    
+    df['Condición'] = df['Condición'].map(mapping)
+
+    df = df[~df['Condición'].isin([5,2])]
+
+    df = df.drop(['Sujetos', 'Condición', 'Recuerdo_autop', 'Valencia_autop', 'Intensidad_autop', 'ValeInt_autop'] + eliminamos_pysent, axis = 1) 
+
+    if drop_12 != True:
+        df = df.dropna()
+    
+        condicion_labels, indices_camp_ar_cfk = indices_condiciones(path_sinautopercepcion_todas, condiciones = [5, 2])
 
 
-#%%
+
+#%% preeliminares slouette_para_PCs
+silouette_paraPCs = []
+
+pcs = range(4, 22)#len(df_vars.columns)+1)
+for numero_comp in tqdm(pcs):
+    data = df   
+    X = data.to_numpy()
+    std_scale.fit(X)
+    X_scaled = std_scale.transform(X)
+    pca = PCA(n_components=numero_comp)
+    pca.fit(X_scaled)
+    X_pca = pca.transform(X_scaled)
+
+    silhouette_coefficients = []
+    
+    k_hasta = 10
+    
+    # Se necesita tener al menos 2 clusters y a los sumo N-1 (con N el numero de muestras) para obtener coeficientes de Silohuette
+    for k in range(2, k_hasta):
+         kkkmeans = KMeans(n_clusters=k,  random_state=42)
+         kkkmeans.fit(X_pca)
+         score = silhouette_score(X_pca, kkkmeans.labels_)
+         silhouette_coefficients.append(score)
+    silouette_paraPCs.append(np.asarray(silhouette_coefficients))
+    
+silouette_paraPCs = np.asarray(silouette_paraPCs)
+#%% silhouette cfk ar camp
+fig, axs = plt.subplots(1, 2, figsize = (17, 7))
+
+# matriz coef de sil prom ERA flare_r el cmap
+im = axs[0].imshow(silouette_paraPCs.T, cmap='PuBu_r', interpolation='none', aspect = 'auto')
+
+# Agregar barra de colores
+cbar = fig.colorbar(im, ax=axs[0], orientation = "horizontal", pad=0.2, label='Coef. de Silhouette prom.')
+
+axs[0].set_yticks(np.arange(len(silouette_paraPCs[0])), fontsize = 18)
+axs[0].set_yticklabels([2, 3, 4, 5, 6, 7, 8, 9])
+axs[0].set_ylabel("Número de clusters", fontsize = 20)
+
+axs[0].set_xticks(np.arange(len(silouette_paraPCs)), fontsize = 18)
+axs[0].set_xticklabels(pcs)
+axs[0].set_xlabel("Número de componentes principales", fontsize = 20)
+
+X_pca, pca, evr = PCA_estandarizando(df,  graph_var = False, graph_PCs = False)
+X = X_pca
+
+range_n_clusters = [2]
+
+yticks = []
+# Iterar sobre el número de clusters
+for i, n_clusters in enumerate(range_n_clusters):
+    # Crear un objeto de agrupamiento KMeans
+    kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+    cluster_labels = kmeans.fit_predict(X)
+
+    # Calcular el coeficiente de silhouette para el conjunto de datos
+    silhouette_avg = silhouette_score(X, cluster_labels)
+    print(f"Para n_clusters = {n_clusters}, el coeficiente de silhouette promedio es: {silhouette_avg}")
+
+    # Calcular los valores de silhouette para cada muestra
+    sample_silhouette_values = silhouette_samples(X, cluster_labels)
+
+    # Crear una gráfica de barras para el perfil de silhouette
+    y_lower = 10
+    for j in range(n_clusters):
+        # Agregar valores de silhouette para cada cluster
+        ith_cluster_silhouette_values = sample_silhouette_values[cluster_labels == j]
+        ith_cluster_silhouette_values.sort()
+        size_cluster_i = ith_cluster_silhouette_values.shape[0]
+        y_upper = y_lower + size_cluster_i
+
+        color = color_silhouette_camp[j]  # Usar el color correspondiente de la paleta "deep"
+        axs[1].fill_betweenx(np.arange(y_lower, y_upper),
+                          0, ith_cluster_silhouette_values,
+                          facecolor=color, edgecolor=color, alpha=0.7)
+
+        # Etiquetas y líneas para cada cluster
+        #ax.text(-0.05, y_lower + 0.5 * size_cluster_i, str(j))
+        yticks.append(y_lower + 0.5 * size_cluster_i)
+        y_lower = y_upper + 10
+
+    # Línea vertical para el coeficiente de silhouette promedio de todos los datos
+    axs[0].text(0.05, 1.14, "(a)", ha='right', va='top', transform=axs[0].transAxes, fontsize = 27)
+    axs[1].text(0.05, 1.1, "(b)", ha='right', va='top', transform=axs[1].transAxes, fontsize = 27)
+    axs[1].set_xlabel("Valor del coeficiente de silhouette")
+    axs[1].set_ylabel("Etiqueta del cluster")
+    axs[1].axvline(x=silhouette_avg, color="k", linewidth = 2.5, linestyle="--", label = "Promedio")
+    axs[1].set_yticks(yticks)  # Borrar etiquetas y
+    axs[1].set_yticklabels(["C1", "C2"])
+    axs[1].legend(fontsize = 17, loc = "lower right")
+    axs[1].tick_params(axis='both', labelsize=19)
+    #ax.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+
+    #plt.title(f"Perfil de Silhouette para n_clusters = {n_clusters}")
+plt.tight_layout()
+plt.show()
+
+plt.savefig(path_imagenes_cfk_ar_camp + '/silhouette2_cfk_pres_ar_transparente.png', transparent = True)
+plt.savefig(path_imagenes_cfk_ar_camp + '/silhouette2_cfk_pres_ar_control.png')
+plt.savefig(path_imagenes_cfk_ar_camp + '/silhouette2_cfk_pres_ar_control.pdf')
+
+#%% preeliminares eleccion de variables
 #si uso valencia2 pysent
 #max_posicion = np.where(np.asarray(R_pcs) == max(R_pcs))[0][0]
 #nro_pcs = nro_pcs_prueba[max_posicion]
+
 max_posicion = np.where(np.asarray(R_pcs_metodo) == max(R_pcs_metodo))[0][0]
 nro_pcs = nro_pcs_prueba[max_posicion]
 print(f"con {nro_pcs} PCs maximiza filler vs presencial")
@@ -1421,7 +1807,7 @@ data_pcs = {f"PC{i+1}": componentes_principales[i] for i in range(len(componente
 # Crea el DataFrame
 df_vars_1 = pd.DataFrame(data_pcs, index=variables)
 
-#%%eleccion de variables
+#%%eleccion de variables, no correr!! tarda mil años (2-3 horas) abajo esta guardada la data relevante.
 
 vars_no_imp_n = []
 k = 2
@@ -1497,7 +1883,7 @@ for n in tqdm(range(len(vars_no_imp_n))):
     #% primero hago PCA a los datos, ya vi que me tengo que quedar con 6 componentes para tener un 70% de la varianza
     R_pca = []
     R_pca_metodo = []
-    pcs_recorridas = [4,5,6,7,8,9,10, 11, 12, 13, 14, 15, 16, 17, 18]
+    pcs_recorridas = [1,2,3]
     for nro_pca in pcs_recorridas:
         try:
             
@@ -1536,7 +1922,183 @@ print(R_n_metodo[indice_maximo[0]])
 print(vars_no_imp_n[indice_maximo[0]])
 
 
-#%%
+#%% figura elección n y nro PCs
+#TODA la data que corrí
+
+vars_elim = ['primera_persona_norm', 'num verb norm', 'cohe_norm_d=3', 'diámetro', 'transitivity', 'average_CC', 'selfloops']
+
+n = 7.5
+
+nro_pcs_max = 2 #o 3 o 4 también maximizan
+
+R_n_metodo = np.asarray([[0.192, 0.186, 0.198, 0.198, 0.212, 0.205, 0.197, 0.197, 0.197, 0.197, np.nan, np.nan,
+          np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+       [0.179, 0.084, 0.188, 0.164, 0.205, 0.181, 0.168, 0.181, 0.181, 0.181, 0.181, 0.181,
+          np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+       [0.205, 0.084, 0.075, 0.083, 0.076, 0.181, 0.204, 0.181, 0.181, 0.181, 0.181, 0.181,
+        0.181, np.nan, np.nan, np.nan, np.nan, np.nan],
+       [0.219, 0.068, 0.077, 0.226, 0.178, 0.174, 0.178, 0.199, 0.199, 0.199, 0.199, 0.199,
+        0.199, 0.199, np.nan, np.nan, np.nan,   np.nan],
+       [0.186, 0.156, 0.174, 0.174, 0.15 , 0.15 , 0.145, 0.162, 0.15 , 0.15 , 0.15 , 0.162,
+        0.162, 0.162, 0.162, np.nan, np.nan, np.nan],
+       [0.175, 0.092, 0.084, 0.084, 0.167, 0.167, 0.167, 0.167, 0.167, 0.167, 0.167, 0.167,
+        0.167, 0.167, 0.167, 0.167, 0.167, np.nan],
+       [0.187, 0.084, 0.084, 0.192, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185,
+        0.185, 0.185, 0.185, 0.185, 0.185, 0.185],
+       [0.187, 0.084, 0.084, 0.192, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185,
+        0.185, 0.185, 0.185, 0.185, 0.185, 0.185],
+       [0.208, 0.213, 0.182, 0.182, 0.2  , 0.2, 0.2  , 0.2  , 0.2  , 0.2  , 0.2  , 0.2  ,
+        0.2  , 0.2  , 0.2  , 0.2  , 0.2  , 0.2  ],
+       [0.238, 0.252, 0.252, 0.252, 0.252, 0.224, 0.224, 0.238, 0.224, 0.224, 0.247, 0.247,
+        0.233, 0.233, 0.233, 0.233, 0.233, 0.233],
+       [0.238, 0.252, 0.252, 0.252, 0.252, 0.224, 0.224, 0.238, 0.224, 0.224, 0.247, 0.247,
+        0.233, 0.233, 0.233, 0.233, 0.233, 0.233],
+       [0.238, 0.252, 0.252, 0.252, 0.252, 0.224, 0.224, 0.238, 0.224, 0.224, 0.247, 0.247,
+        0.233, 0.233, 0.233, 0.233, 0.233, 0.233],
+       [0.221, 0.219, 0.221, 0.221, 0.219, 0.219, 0.221, 0.219, 0.219, 0.219, 0.219, 0.219,
+        0.219, 0.219, 0.219, 0.219, 0.219, 0.219],
+       [0.208, 0.216, 0.221, 0.221, 0.219, 0.208, 0.208, 0.219, 0.219, 0.219, 0.219, 0.219,
+        0.219, 0.225, 0.225, 0.225, 0.225, 0.225],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.219, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.213, 0.219, 0.219, 0.219, 0.225, 0.219, 0.219, 0.232, 0.239, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.213, 0.219, 0.219, 0.219, 0.225, 0.219, 0.219, 0.232, 0.239, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.213, 0.219, 0.219, 0.219, 0.225, 0.219, 0.219, 0.232, 0.239, 0.239, 0.239, 0.239,
+        0.239, 0.239, 0.239, 0.239, 0.239, 0.239],
+       [0.213, 0.227, 0.219, 0.233, 0.235, 0.233, 0.227, 0.227, 0.227, 0.233, 0.233, 0.233,
+        0.233, 0.233, 0.233, 0.233, 0.233, 0.233]])
+
+
+ns_a_recorrer =[3, 3.5, 4, 4.5,  5, 5.5,  6, 6.5, 7, 7.5,  8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 15]
+pcs_recorridas = [1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15, 16, 17, 18]
+
+#la que grafico
+
+ns_a_recorrer =[3, 3.5, 4, 4.5,  5, 5.5,  6, 7, 7.5, 9, 9.5, 10, 11, 13, 15]
+pcs_recorridas = [1,2,3,4,5,6,7,8,9,10, 11, 12, 13]
+
+R_n_metodo = np.asarray([[0.192, 0.186, 0.198, 0.198, 0.212, 0.205, 0.197, 0.197, 0.197, 0.197, np.nan, np.nan,
+          np.nan],
+       [0.179, 0.084, 0.188, 0.164, 0.205, 0.181, 0.168, 0.181, 0.181, 0.181, 0.181, 0.181,
+          np.nan],
+       [0.205, 0.084, 0.075, 0.083, 0.076, 0.181, 0.204, 0.181, 0.181, 0.181, 0.181, 0.181,
+        0.181],
+       [0.219, 0.068, 0.077, 0.226, 0.178, 0.174, 0.178, 0.199, 0.199, 0.199, 0.199, 0.199,
+        0.199],
+       [0.186, 0.156, 0.174, 0.174, 0.15 , 0.15 , 0.145, 0.162, 0.15 , 0.15 , 0.15 , 0.162,
+        0.162],
+       [0.175, 0.092, 0.084, 0.084, 0.167, 0.167, 0.167, 0.167, 0.167, 0.167, 0.167, 0.167,
+        0.167],
+       [0.187, 0.084, 0.084, 0.192, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185, 0.185,
+        0.185],
+       [0.208, 0.213, 0.182, 0.182, 0.2  , 0.2, 0.2  , 0.2  , 0.2  , 0.2  , 0.2  , 0.2  ,
+        0.2],
+       [0.238, 0.252, 0.252, 0.252, 0.252, 0.224, 0.224, 0.238, 0.224, 0.224, 0.247, 0.247,
+        0.233],
+       [0.221, 0.219, 0.221, 0.221, 0.219, 0.219, 0.221, 0.219, 0.219, 0.219, 0.219, 0.219,
+        0.219],
+       [0.208, 0.216, 0.221, 0.221, 0.219, 0.208, 0.208, 0.219, 0.219, 0.219, 0.219, 0.219,
+        0.219],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.219, 0.239, 0.239,
+        0.239],
+       [0.208, 0.219, 0.219, 0.219, 0.219, 0.219, 0.232, 0.219, 0.219, 0.239, 0.239, 0.239,
+        0.239],
+       [0.213, 0.219, 0.219, 0.219, 0.225, 0.219, 0.219, 0.232, 0.239, 0.239, 0.239, 0.239,
+        0.239],
+       [0.213, 0.227, 0.219, 0.233, 0.235, 0.233, 0.227, 0.227, 0.227, 0.233, 0.233, 0.233,
+        0.233]])
+
+fig, axs = plt.subplots(1, 2, figsize = (17, 7))
+
+# matriz coef de sil prom ERA flare_r el cmap
+im = axs[0].imshow(R_n_metodo.T, cmap='PuBu', interpolation='none', aspect = 'auto')
+
+# Agregar barra de colores
+cbar = fig.colorbar(im, ax=axs[0], orientation = "horizontal", pad=0.2, label='indice R')
+
+axs[0].set_yticks(np.arange(len(R_n_metodo[0])), fontsize = 18)
+axs[0].set_yticklabels(pcs_recorridas)
+axs[0].set_ylabel("Núm. comp. principales", fontsize = 20)
+
+axs[0].set_xticks(np.arange(len(R_n_metodo)), fontsize = 18)
+axs[0].set_xticklabels(ns_a_recorrer)
+axs[0].set_xlabel("Núm de vars tomadas de la 1° PC", fontsize = 20)
+
+#X_pca, pca, evr = PCA_estandarizando(df,  graph_var = False, graph_PCs = False)
+X = X_pca
+
+
+df = df.drop(vars_elim, axis = 1)
+
+X = df.to_numpy()
+
+# Ajustamos el estandarizador
+std_scale.fit(X)
+
+# Aplicamos el estandarizador y obtenemos la matriz de features escaleados
+X_scaled = std_scale.transform(X)
+
+# Creación del modelo. Si el número de componentes no se específica, 
+# se obtienen tantas componentes principales como features en nuestro dataset.
+pca = PCA(n_components=None)
+
+# Ajustamos el modelo a los datos escaleados
+pca.fit(X_scaled)
+
+# Obtenemos la descripción de los datos en el espacio de componentes principales
+X_pca = pca.transform(X_scaled)
+
+evr = pca.explained_variance_ratio_
+
+
+# con .explained_variance_ratio_ vemos la fracción de información que aporta cada componente
+
+# Calculamos el acumulado con la función cumsum de numpy 
+varianza_acumulada = np.cumsum(evr)
+
+axs[1].plot(range(1, len(evr) + 1), varianza_acumulada, '.-', markersize = 20, color = color_silhouette_camp[2], zorder = 5)
+axs[1].set_ylabel('Fracción acumulada de var. explicada')
+axs[1].set_xlabel('Cantidad de componentes principales')
+axs[1].axhline(y=varianza_acumulada[nro_pcs_max-1], color=color_gris, linestyle='--', linewidth = 4, label=f'{varianza_acumulada[8]*100:.0f}%')
+axs[1].axvline(x = nro_pcs_max, color=color_gris, linestyle='--', linewidth = 4)
+axs[1].grid(True)
+
+# Línea vertical para el coeficiente de silhouette promedio de todos los datos
+axs[0].text(0.05, 1.14, "(a)", ha='right', va='top', transform=axs[0].transAxes, fontsize = 27)
+axs[1].text(0.05, 1.1, "(b)", ha='right', va='top', transform=axs[1].transAxes, fontsize = 27)
+
+    #ax.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
+
+    #plt.title(f"Perfil de Silhouette para n_clusters = {n_clusters}")
+plt.tight_layout()
+plt.show()
+
+plt.savefig(path_imagenes_cfk_ar_camp + '/eleccionPCs_cfk_pres_ar_transparente.png', transparent = True)
+plt.savefig(path_imagenes_cfk_ar_camp + '/eleccionPCs_cfk_pres_ar_control.png')
+plt.savefig(path_imagenes_cfk_ar_camp + '/eleccionPCs_cfk_pres_ar_control.pdf')
+
+#%% busco que pc es mejor entre 2 3 y 4 ---> es exactamente el mismo R... 
+#podría quedarme con 2 porque 3 solo arabia tiene diferencias significativas la PC y no es buena, es
+#de memoria pero las de memoria no tienen diferencias significativas. Siento que son muy pocas igual
+#me gustaría hablarlo con luz
+
+k = 2
+R = R_clausterizacion(X_pca[:,:4], k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
+print(R)
+
+#%% grafico de PC1 y PC2
 df = pd.read_csv(path_conautopercepcion_todas)
 
 df = df.dropna()
@@ -1567,12 +2129,77 @@ if no_autop == True:
     
         condicion_labels, indices_camp_ar_cfk = indices_condiciones(path_sinautopercepcion_todas, condiciones = [5, 2], drop = vars_no_imp_n[n])
     
-df = df.drop(vars_no_imp_n[indice_maximo[0]], axis = 1)
+df = df.drop(vars_elim, axis = 1)
 
-X_pca, pca1, evr1 = PCA_estandarizando(df, n_components =  pcs_recorridas[indice_maximo[1]], max_var = 0.6, graph_var = True, graph_PCs = True, n_graph_PCs = pcs_recorridas[indice_maximo[1]])
+#X_pca, pca1, evr1 = PCA_estandarizando(df, n_components =  nro_pcs_max, max_var = 0.6, graph_var = False, graph_PCs = True, n_graph_PCs = nro_pcs_max)
+data = df
+
+X = data.to_numpy()
+std_scale.fit(X)
+X_scaled = std_scale.transform(X)
+pca = PCA(n_components=nro_pcs_max)
+pca.fit(X_scaled)
+X_pca = pca.transform(X_scaled)
+
+npl.rcParams["axes.labelsize"] = 20
+npl.rcParams['xtick.labelsize'] = 20
+npl.rcParams['ytick.labelsize'] = 20
+
+
+variables = list(data.columns)
+variables = ["Palabras", "3° Persona", "Sust.", "Adj.", "Adv.", "Num.", "Nomb. prop.", "Positivo", "Negativo", "Intensidad", "Valencia", "Int. y val.", "Cohe. d = 1", "Cohe. d = 2", "Nodos", "Comunidades", "Grado", "ASP", "L2", "L3", "Densidad", "Internos", "Externos"]
+
+componentes_principales = [pca.components_[i] for i in range(0, nro_pcs_max)]
+
+# Crea un diccionario con las componentes principales y las variables
+data_pcs = {f"PC{i+1}": componentes_principales[i] for i in range(len(componentes_principales))}
+
+# Crea el DataFrame
+df_vars_1 = pd.DataFrame(data_pcs, index=variables)
+
+#df_vars_1.to_csv('C:/Users/Usuario/Desktop/Cori/Tesis/Primera_entrevista/PCA y matriz de corr/primeras_6_componentes.csv')
+
+center_value= 0
+plt.figure(figsize = (12, 10))
+sns.heatmap(df_vars_1, cmap='BrBG', fmt=".2f", cbar=True, linewidths=0.5, linecolor="black", center = center_value) #cbar_kws={"shrink": 0.75}) #"YlGnBu,  annot=True
+
+
+plt.yticks(rotation=0) #plt.yticks(variables)
+plt.xticks(rotation=0)
+#plt.xlabel("Componentes Principales")
+
+plt.tight_layout()
+# Muestra el gráfico
+plt.show()
+
+plt.savefig(path_imagenes_cfk_ar_camp + '/2PCs_cfk_pres_ar_transparente.png', transparent = True)
+plt.savefig(path_imagenes_cfk_ar_camp + '/2PCs_cfk_pres_ar_control.png')
+plt.savefig(path_imagenes_cfk_ar_camp + '/2PCs_cfk_pres_ar_control.pdf')
+#%% PC1 VS PC2 cfk ar camp
+
+data = X_pca
+length = np.sqrt((data**2).sum(axis=1))[:,None]
+data_norm = data / length
 
 k = 2
-R = R_clausterizacion(X_pca, k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
+#Creación del modelo KMeans 
+kmeans2 = KMeans(n_clusters=k, init = "random",  n_init = 10000, random_state = 42)
+
+#Ajuste del modelo a los datos reducidos en componentes principales PCA
+kmeans2.fit(data_norm)
+R_index2mean = adjusted_rand_score(condicion_labels, kmeans2.labels_) 
+
+
+#%% grafico PC1 vs PC2
+print(f"Indice R con kmeans {k} y PCA: ", R_index2mean)
+etiquetas(kmeans2.labels_, indices_pres_cfk)
+
+centroids = kmeans2.cluster_centers_
+
+markerscluster_colortemas_cfkArCamp(kmeans2.labels_, data_norm, indices_camp_ar_cfk, color = colores_condiciones, save = "cfkArCamp", centroids = centroids, title =  None)
+
+#k = 2
+#R = R_clausterizacion(X_pca, k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
 
 #%%
 entrevista = "Segunda"
