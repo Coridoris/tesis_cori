@@ -215,7 +215,7 @@ def plot_interval(min0, min1, max0, max1, mean, std, xlim=None, y=0, thickness=0
             #se grafica por abajo del eje x
             ax.add_patch(Rectangle((mean[1]-std[1], y-thickness), 2*std[1], thickness, linewidth=0, color= color2, alpha = alpha))
             #sino hago mas fino thinkness (y dejo y = 0 y thinkess 0.4: el segundo param es -thinkness/2
-            ax.plot(mean[1], thickness/2, "o", color = darken_color(color2), edgecolors = 'k', markersize=6)
+            ax.plot(mean[1], thickness/2, "o", color = darken_color(color2), markersize=6) #edgecolor = 'k' no funca
     else:
         if xlim is None:
             max_tot = max(max0, max1)
@@ -263,7 +263,7 @@ drop_12 = True
 
 eliminando_outliers = True
 
-path_imagenes = "C:/Users/Usuario/Desktop/Cori/Tesis/Figuras_finales/Dos tiempos"
+path_imagenes = "C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/Dos tiempos"
 
 #kmeans_TF = False #si es true kmeans es el metodo 0, k medoids el 1 y asi
 #%% path data primera entrevista para hacer PCs que optimizan a la misma
@@ -291,7 +291,7 @@ eliminamos_pysent = ['Valencia pysent', 'Valencia e intensidad pysent']#, 'Valen
 
 
 #valencia2 pysent kmeans
-nro_pcs_kmeans = 4 
+nro_pcs_kmeans = 2 #4 
 vars_no_imp_kmeans = ['primera_persona_norm', 'num verb norm', 'cohe_norm_d=3', 'diámetro', 'transitivity', 'average_CC', 'selfloops']
 #valencia 2 average jerarquico
 nro_pcs_average = 12
@@ -342,7 +342,7 @@ if no_autop == True:
     
 df = df.drop(vars_no_imp, axis = 1)
 
-X_pca, pca1, evr1 = PCA_estandarizando(df, n_components =  nro_pcs, max_var = 0.6, graph_var = True, graph_PCs = True, n_graph_PCs = nro_pcs)
+X_pca, pca1, evr1 = PCA_estandarizando(df, n_components =  nro_pcs, max_var = 0.2, graph_var = True, graph_PCs = True, n_graph_PCs = nro_pcs)
 
 nro_variables = len(df.columns)
 for i in range(nro_pcs):
@@ -380,6 +380,8 @@ if eliminando_outliers == True:
 
 
 #%% dataframe con PCs en primer y segundo tiempo con transformación para optimizar R de la primer entrevista
+
+save = True
 
 vars_sig_PC1 = ["num_nodes_LSC", "Comunidades_LSC", "density", "num_palabras_unicas_norm"] #si no queda mal agregaria k_mean, L3, L2, pesan bastante
 vars_sig_PC2 = ["Valencia e intensidad2 pysent", "Negativo pysent", "Positivo pysent", "Intensidad pysent"] #si no queda mal Intensidad pysent
@@ -466,27 +468,55 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
     #tengo que tirar esto despues de dopear nans sino queda dim diferente de columna t que después agrego y de 
     # X_pca
     df = df.drop(['Sujetos', 'Condición', 'Tiempo'] + eliminamos_pysent, axis=1) 
+    
+    df_vars_tiempo_1_filtrado = df_vars_tiempo_1.drop(['Sujetos', 'Condición', 'Tiempo'] + eliminamos_pysent + vars_no_imp, axis=1) 
+    
+    df_vars_tiempo_2_filtrado = df_vars_tiempo_2.drop(['Sujetos', 'Condición', 'Tiempo'] + eliminamos_pysent + vars_no_imp, axis=1)
           
     df = df.drop(vars_no_imp, axis = 1)
     
     X = df.to_numpy()
+    X_t1 = df_vars_tiempo_1_filtrado.to_numpy()
+    X_t2 = df_vars_tiempo_2_filtrado.to_numpy()
     
     # Ajustamos el estandarizador
-    std_scale.fit(X)
-    
+    std_scale.fit(X) 
     # Aplicamos el estandarizador y obtenemos la matriz de features escaleados
     X_scaled = std_scale.transform(X)
     X_pca = pca1.transform(X_scaled)
+    
+    #std_scale.fit(X_t1)
+    X_scaled_t1 = std_scale.transform(X_t1)
+    X_pca_t1 = pca1.transform(X_scaled_t1)
+    
+    #std_scale.fit(X_t2)
+    X_scaled_t2 = std_scale.transform(X_t2)
+    X_pca_t2 = pca1.transform(X_scaled_t2)
     
     # Crear un DataFrame con las columnas PC1, PC2, PC3, ...
     columns_pca = [f'PC{i}' for i in range(1, X_pca.shape[1] + 1)]
     df_pca = pd.DataFrame(data=X_pca, columns=columns_pca)
     
+    df_pca_t1 = pd.DataFrame(data=X_pca_t1, columns=columns_pca)
+    df_pca_t2 = pd.DataFrame(data=X_pca_t2, columns=columns_pca)
+    '''
+    si usas df_pca_ts da lo mismo, ojo cuando haces el X_scaled, no es de cada una el std_scale
+    porque sino te normaliza todo al mismo intervalo... debería transformas las pcs por separado pero no el X_scaled
+    '''
+    #df_pca_ts!!! abajo
+    df_pca_ts = pd.concat([df_pca_t1, df_pca_t2], ignore_index=True)#df_pca_ts!!! este
+    #df_pca_ts!!! arriba
+    
     df_pca.index = df.index #sino cuando inserte las columnas de abajo como tienen indice va a poner nans en los que no coincidan
+   # df_pca_ts.index = df.index
     
     df_pca.insert(0, 'Tiempo', columna_tiempos)
     df_pca.insert(0, 'Condición', columna_condicion)
     df_pca.insert(0, 'Sujetos', columna_sujetos)
+    
+   # df_pca_ts.insert(0, 'Tiempo', columna_tiempos)
+   # df_pca_ts.insert(0, 'Condición', columna_condicion)
+   # df_pca_ts.insert(0, 'Sujetos', columna_sujetos)
     
     #% ANOVA
     
@@ -678,9 +708,11 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
                 plt.tight_layout()
                 plt.show()
                 
-                plt.savefig(path_imagenes + f'/Transparentes/{clave}_{var_sig}_tansparente.png', transparent = True)
-                plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.png', transparent = False)
-                plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.pdf')
+                if save == True:
+                    print("estoy guardando")
+                    plt.savefig(path_imagenes + f'/Transparentes/{clave}_{var_sig}_tansparente.png', transparent = True)
+                    plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.png', transparent = False)
+                    plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.pdf')
 
             
             if var_sig in ["PC3", "PC4"]: #PC2 las que siguen
@@ -762,10 +794,9 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
                 plt.tight_layout()
                 
                 plt.show()
-                
-                plt.savefig(path_imagenes + f'/Transparentes/{clave}_{var_sig}_tansparente.png', transparent = True)
-                plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.png', transparent = False)
-                plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.pdf')
-
-#%%
+                if save == True:
+                    print("estoy guardando")
+                    plt.savefig(path_imagenes + f'/Transparentes/{clave}_{var_sig}_tansparente.png', transparent = True)
+                    plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.png', transparent = False)
+                    plt.savefig(path_imagenes + f'/No transparentes/{clave}_{var_sig}.pdf')
 

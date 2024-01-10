@@ -5,7 +5,12 @@ Created on Tue Dec 12 14:41:48 2023
 @author: corir
 """
 
-#%% librerias
+'''
+si queres correr para tener el pca de ajuste tenes q correr solo las que le pongo (*)
+(-) para pres_control
+'''
+
+#%% (*) librerias 
 import pandas as pd 
 import matplotlib.pyplot as plt 
 import numpy as np 
@@ -56,7 +61,7 @@ from sklearn.metrics.cluster import adjusted_rand_score #si da cerca de 0 es aza
 from sklearn.cluster import DBSCAN
 
 
-#%% FUNCIONES
+#%% (*) FUNCIONES
 
 def rgb_to_hex(rgb):
     # Asegurarse de que los valores estén en el rango [0, 1]
@@ -956,7 +961,7 @@ def perfil_silhouette(X, cluster_labels, save = None):
     
     return 'ok'
 
-#%% el santo trial 
+#%% (*) el santo trial 
 
 entrevista = 'Primera'
 
@@ -1037,7 +1042,7 @@ path_imagenes = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_fin
 path_imagenes_cfk_ar_camp = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/PCA_clustering/CFK_Ar_camp'
 
 
-#%% path data 
+#%% (*) path data 
 
 path_sinautopercepcion_todas = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/{entrevista}_entrevista/ELcsv nuevo/ELcsv_sinautopercepcion_todos_temas.csv'
 
@@ -1065,7 +1070,7 @@ mapping = {
 eliminamos_pysent = ['Valencia pysent', 'Valencia e intensidad pysent']#, 'Valencia2 pysent', 'Valencia e intensidad2 pysent']
 
 
-#%% data PCA para eleccion de vars
+#%% (-) data PCA para eleccion de vars
 #df_vars = pd.read_csv(path_conautopercepcion_todas)
 #condicion_labels, indices_pres_cfk = indices_condiciones(path_conautopercepcion_todas, condiciones = [4,3,1])
 if no_autop == True:
@@ -1489,7 +1494,7 @@ plt.savefig(path_imagenes + '/silhouettyRindexe_pres_control.png')
 plt.savefig(path_imagenes + '/silhouetteyRindex_pres_control.pdf')
 
 
-#%% hago una figura de 2 de Rindex y PCs
+#%% (-) hago una figura de 2 de Rindex y PCs ACA ESTA pca_pres_control
 
 #fig, axs = plt.subplots(1, 2, figsize = (9, 0))
 
@@ -1553,13 +1558,12 @@ ax2.grid(True)
 
 plt.tight_layout() 
 plt.show()
-
+#%% guardar la figura
 plt.savefig(path_imagenes + '/RindexyPCs_pres_control_transparente.png', transparent = True)
 plt.savefig(path_imagenes + '/RindexyPCs_pres_control.png')
 plt.savefig(path_imagenes + '/RindexyPCs_pres_control.pdf')
 
 #%% gráfico de PCs
-#%%
 n_graph_PCs = 9
 
 npl.rcParams["axes.labelsize"] = 20
@@ -2153,7 +2157,7 @@ k = 2
 R = R_clausterizacion(X_pca[:,:4], k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
 print(R)
 
-#%% grafico de PC1 y PC2 (y preeliminares PC1 vs PC2)
+#%% (*) grafico de PC1 y PC2 (y preeliminares PC1 vs PC2) ACA ESTA pca_cfkArCamp (ninguna figura, podes correr)
 
 nro_pcs_max = 2
 vars_elim = ['primera_persona_norm', 'num verb norm', 'cohe_norm_d=3', 'diámetro', 'transitivity', 'average_CC', 'selfloops']
