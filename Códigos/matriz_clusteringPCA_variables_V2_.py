@@ -13,6 +13,7 @@ import seaborn as sns
 from tqdm import tqdm
 import matplotlib as npl
 import matplotlib.patches as mpatches
+import matplotlib.colors as mcolors
 
 # Clase para realizar componentes principales
 from sklearn.decomposition import PCA
@@ -337,6 +338,9 @@ def R_clausterizacion(data, k, condicion_labels, indices, kmeans = False, etique
         if etiquetas_print != False:
             print(f"Indice R con kmeans {k} y PCA: ", R_index5mean)
             etiquetas(kmeans5.labels_, indices)
+        centroids = kmeans5.cluster_centers_
+        markerscluster_colortemas_cfkArCamp(kmeans5.labels_, data_norm, indices_camp_ar_cfk, color = colores_condiciones, save = None, centroids = centroids, title =  None)
+
             
     
     # kmedoids con Kmedoids de sklear_extra
@@ -514,11 +518,12 @@ def markerscluster_colortemas_filler_vs_pres(labels, X, indices, color, save = N
             color_index = 1
 
 
-        if i in [0, ind_fil[0][0], ind_pres[0][1]]:
-            ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])#, label = temas_label[tema_contador])
-            tema_contador = tema_contador + 1
-        else:
-            ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])
+        # if i in [0, ind_fil[0][0], ind_pres[0][1]]:
+        #     ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])#, label = temas_label[tema_contador])
+        #     tema_contador = tema_contador + 1
+        # else:
+        #    
+        ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index], alpha = 0.75)
     
     #buscando centroids a mano
     # if type(centroids) == np.ndarray:
@@ -535,17 +540,21 @@ def markerscluster_colortemas_filler_vs_pres(labels, X, indices, color, save = N
     for j, (x, y) in enumerate(zip(centroids[:, 0], centroids[:, 1])): #color = colores[j-1]  le deja el color del tema mayoritario del cluster
         plt.scatter(x, y, marker=marcadores[j % len(marcadores)], s=200, c='w', edgecolors='black', linewidths=3)
    
-    
+
    # legend
     num_of_groups = 2
-    color = np.array([colores,]*num_of_groups).transpose()
+    alpha = 0.75
+    colores_with_alpha = [mcolors.to_rgba(color, alpha=alpha) for color in colores]
+    color = np.array([colores_with_alpha,]*num_of_groups).transpose()
     label_cluster = ['C1','C2']
     label_tema = ['Control', 'Presencial']
-    tem = [mpatches.Patch(color=color[i, 0]) for i in range(num_of_groups)]
+    
+    tem = [mpatches.Patch(color=colores_with_alpha[i]) for i in range(num_of_groups)]
+
     clust = [plt.plot([], [], marcadores[i], markersize=12, markerfacecolor='w',
                         markeredgecolor='k')[0] for i in range(num_of_groups)]
     
-    ax.legend(tem + clust, label_tema + label_cluster, loc='upper left', bbox_to_anchor=(1, 1), fontsize = 15)
+    ax.legend(tem + clust, label_tema + label_cluster, loc='upper left', bbox_to_anchor=(1, 1), fontsize = 18)
 
     ax.set_xlabel('Primer componente principal', fontsize = 20)
     ax.set_ylabel('Segunda componente principal', fontsize = 20)
@@ -581,9 +590,9 @@ def markerscluster_colortemas_cfkArCamp(labels, X, indices, color, save = None, 
     ind_fil = indices[4]
     # Definir colores y marcadores
     colores = color
-    color_cfk = color[2]
-    color_ar = color[3]
-    color_camp = color[0]
+    color_cfk = color[0]#0 con spectral
+    color_ar = color[2] #no tiene con spectral :(
+    color_camp = color[3]#2 con spectral
     colores = [color_cfk, color_camp, color_ar]
     
     
@@ -605,7 +614,7 @@ def markerscluster_colortemas_cfkArCamp(labels, X, indices, color, save = None, 
         #    ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])#, label = temas_label[tema_contador])
         #    tema_contador = tema_contador + 1
         #else:
-        ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], c=colores[color_index])
+        ax.scatter(X[i, 0], X[i, 1], marker=marcadores[cluster_index], s = 40, c=colores[color_index], alpha = 0.75)
     
     #buscando centroids a mano
     # if type(centroids) == np.ndarray:
@@ -624,15 +633,19 @@ def markerscluster_colortemas_cfkArCamp(labels, X, indices, color, save = None, 
    
     
    # legend
-    num_of_groups = 2
-    color = np.array([colores,]*num_of_groups).transpose()
+    num_of_groups = 3
+    alpha = 0.75
+    
+    colores_with_alpha = [mcolors.to_rgba(color, alpha=alpha) for color in colores]
+    color = np.array([colores_with_alpha,]*num_of_groups).transpose()
+    
     label_cluster = ['C1','C2']
     label_tema = ['CFK', 'Campeones', "Arabia"]
-    tem = [mpatches.Patch(color=color[i, 0]) for i in range(num_of_groups)]
+    tem = [mpatches.Patch(color=colores_with_alpha[i]) for i in range(num_of_groups)]
     clust = [plt.plot([], [], marcadores[i], markersize=12, markerfacecolor='w',
-                        markeredgecolor='k')[0] for i in range(num_of_groups)]
+                        markeredgecolor='k')[0] for i in range(num_of_groups-1)]
     
-    ax.legend(tem + clust, label_tema + label_cluster, loc='upper left', bbox_to_anchor=(1, 1), fontsize = 15)
+    ax.legend(tem + clust, label_tema + label_cluster, loc='upper left', bbox_to_anchor=(1, 1), fontsize = 18)
 
     ax.set_xlabel('Primer componente principal', fontsize = 20)
     ax.set_ylabel('Segunda componente principal', fontsize = 20)
@@ -642,11 +655,12 @@ def markerscluster_colortemas_cfkArCamp(labels, X, indices, color, save = None, 
     
     plt.tight_layout()
     
+    path_imagenes_cfk_ar_camp = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/PCA_clustering/CFK_Ar_camp'
+
     if save != None:
-        path_imagenes = f'C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/PCA_clustering/Presencial_control'                                                
-        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas_transparente.png', transparent = True) 
-        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas.png') 
-        plt.savefig(path_imagenes + f'/{save}_PC1vsPC2_markersclusters_colortemas.pdf') 
+        plt.savefig(path_imagenes_cfk_ar_camp + f'/{save}_PC1vsPC2_markersclusters_colortemas_transparente.png', transparent = True) 
+        plt.savefig(path_imagenes_cfk_ar_camp + f'/{save}_PC1vsPC2_markersclusters_colortemas.png') 
+        plt.savefig(path_imagenes_cfk_ar_camp + f'/{save}_PC1vsPC2_markersclusters_colortemas.pdf') 
 
 
     plt.show()
@@ -996,7 +1010,7 @@ color_silhouette_camp = [color_1, color_2, color_3]
 
 rainbow_palette = sns.color_palette("Spectral_r", n_colors=7)
 
-#rainbow_palette = sns.color_palette("rainbow", n_colors=7)
+rainbow_palette = sns.color_palette("rainbow", n_colors=7)
 
 #rainbow_palette = sns.color_palette("autumn_r", n_colors=2)
 
@@ -1060,7 +1074,7 @@ if no_autop == True:
 
 df_vars['Condición'] = df_vars['Condición'].map(mapping)
 
-df_vars = df_vars[~df_vars['Condición'].isin([4, 1,3])]
+df_vars = df_vars[~df_vars['Condición'].isin([4, 1,3])] #4, 1,3
 
 df_vars = df_vars.drop(['Sujetos', 'Condición'] + eliminamos_pysent, axis=1)
 
@@ -1511,8 +1525,11 @@ X_scaled = std_scale.transform(X)
 # se obtienen tantas componentes principales como features en nuestro dataset.
 pca = PCA(n_components=None)
 
+pca_pres_control = PCA(n_components=9)
+
 # Ajustamos el modelo a los datos escaleados
 pca.fit(X_scaled)
+pca_pres_control.fit(X_scaled)
 
 # Obtenemos la descripción de los datos en el espacio de componentes principales
 X_pca = pca.transform(X_scaled)
@@ -1629,9 +1646,28 @@ plt.savefig(path_imagenes + '/9PCs_pres_control.pdf')
 #print("con 6")
 #R_clausterizacion(X_pca[:,:6], k, condicion_labels, indices_pres_cfk, kmeans = False, etiquetas_print = True)
 #%% preeliminares grafico PC1 vs PC2
+
+X = df_vars.to_numpy()
+std_scale.fit(X)
+X_scaled = std_scale.transform(X)
+pca_pres_control = PCA(n_components=9)
+pca_pres_control.fit(X_scaled)
+X_pca = pca_pres_control.transform(X_scaled)
+
+
 data = X_pca
 length = np.sqrt((data**2).sum(axis=1))[:,None]
 data_norm = data / length
+
+# fig, ax = plt.subplots(figsize = (18, 10))
+
+# # Hacemos un scatter de los datos en las dos primeras componentes
+# ax.scatter(X_pca[:,0], X_pca[:,1], alpha = 0.65)
+# ax.scatter(data_norm[:,0], data_norm[:,1], alpha = 0.65)
+
+# ax.set_xlabel('Primer componente principal')
+# ax.set_ylabel('Segunda componente principal')
+# plt.show()
 
 k = 2
 #Creación del modelo KMeans 
@@ -1648,12 +1684,31 @@ etiquetas(kmeans2.labels_, indices_pres_cfk)
 
 centroids = kmeans2.cluster_centers_
 
+centroids_renorm = centroids*length.mean(axis=0)
+
+centroids_manual = np.zeros((k, X_pca.shape[1]))
+
+# Calcular los centroides a mano
+for cluster_label in range(k):
+    # Seleccionar los puntos pertenecientes al cluster actual
+    cluster_points = X_pca[kmeans2.labels_ == cluster_label]
+    # Calcular el centroide como la media de los puntos en el cluster
+    centroid = np.mean(cluster_points, axis=0)
+    # Almacenar el centroide en el array de centroides
+    centroids_manual[cluster_label] = centroid
+    
+    
+#save = "presvscontrol"
 markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, data_norm, indices_pres_cfk, color = colores_condiciones, save = "presvscontrol", centroids = centroids, title =  None)
+
+#markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, X_pca, indices_pres_cfk, color = colores_condiciones, save = None, centroids = centroids_renorm , title =  None)
+
+markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, X_pca, indices_pres_cfk, color = colores_condiciones, save = "presvscontrol_NOenespaciocosine", centroids = centroids_manual , title =  None)
 
 #markerstemas_colorcluster(kmeans2.labels_, data_norm, temas, indices_pres_cfk, save = None, centroids = centroids.T, title =  None)
 
 #%% eleccion de k con silhouette para cfk ar y camp
-#%% data cfjk ar camp
+#%% data cfk ar camp
 df = pd.read_csv(path_conautopercepcion_todas)
 
 df = df.dropna()
@@ -2098,7 +2153,11 @@ k = 2
 R = R_clausterizacion(X_pca[:,:4], k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
 print(R)
 
-#%% grafico de PC1 y PC2
+#%% grafico de PC1 y PC2 (y preeliminares PC1 vs PC2)
+
+nro_pcs_max = 2
+vars_elim = ['primera_persona_norm', 'num verb norm', 'cohe_norm_d=3', 'diámetro', 'transitivity', 'average_CC', 'selfloops']
+
 df = pd.read_csv(path_conautopercepcion_todas)
 
 df = df.dropna()
@@ -2132,15 +2191,14 @@ if no_autop == True:
 df = df.drop(vars_elim, axis = 1)
 
 #X_pca, pca1, evr1 = PCA_estandarizando(df, n_components =  nro_pcs_max, max_var = 0.6, graph_var = False, graph_PCs = True, n_graph_PCs = nro_pcs_max)
-data = df
 
-X = data.to_numpy()
+X = df.to_numpy()
 std_scale.fit(X)
 X_scaled = std_scale.transform(X)
-pca = PCA(n_components=nro_pcs_max)
-pca.fit(X_scaled)
-X_pca = pca.transform(X_scaled)
-
+pca_cfkArCamp = PCA(n_components=nro_pcs_max)
+pca_cfkArCamp.fit(X_scaled)
+X_pca = pca_cfkArCamp.transform(X_scaled)
+#%% el gráfico
 npl.rcParams["axes.labelsize"] = 20
 npl.rcParams['xtick.labelsize'] = 20
 npl.rcParams['ytick.labelsize'] = 20
@@ -2179,7 +2237,17 @@ plt.savefig(path_imagenes_cfk_ar_camp + '/2PCs_cfk_pres_ar_control.pdf')
 
 data = X_pca
 length = np.sqrt((data**2).sum(axis=1))[:,None]
-data_norm = data / length
+data_norm = X_pca / length
+
+# fig, ax = plt.subplots(figsize = (18, 10))
+
+# # Hacemos un scatter de los datos en las dos primeras componentes
+# ax.scatter(X_pca[:,0], X_pca[:,1], alpha = 0.65)
+# ax.scatter(data_norm[:,0], data_norm[:,1], alpha = 0.65)
+
+# ax.set_xlabel('Primer componente principal')
+# ax.set_ylabel('Segunda componente principal')
+# plt.show()
 
 k = 2
 #Creación del modelo KMeans 
@@ -2190,19 +2258,33 @@ kmeans2.fit(data_norm)
 R_index2mean = adjusted_rand_score(condicion_labels, kmeans2.labels_) 
 
 
-#%% grafico PC1 vs PC2
+# grafico PC1 vs PC2
 print(f"Indice R con kmeans {k} y PCA: ", R_index2mean)
-etiquetas(kmeans2.labels_, indices_pres_cfk)
+etiquetas(kmeans2.labels_, indices_camp_ar_cfk)
 
 centroids = kmeans2.cluster_centers_
 
+
 markerscluster_colortemas_cfkArCamp(kmeans2.labels_, data_norm, indices_camp_ar_cfk, color = colores_condiciones, save = "cfkArCamp", centroids = centroids, title =  None)
+centroids_manual = np.zeros((k, X_pca.shape[1]))
+
+# Calcular los centroides a mano
+for cluster_label in range(k):
+    # Seleccionar los puntos pertenecientes al cluster actual
+    cluster_points = X_pca[kmeans2.labels_ == cluster_label]
+    # Calcular el centroide como la media de los puntos en el cluster
+    centroid = np.mean(cluster_points, axis=0)
+    # Almacenar el centroide en el array de centroides
+    centroids_manual[cluster_label] = centroid
+    
+markerscluster_colortemas_cfkArCamp(kmeans2.labels_, X_pca, indices_camp_ar_cfk, color = colores_condiciones, save = "cfkArCamp_NOenespaciocosine", centroids = centroids_manual, title =  None)
 
 #k = 2
 #R = R_clausterizacion(X_pca, k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
 
-#%%
+#%% segunda entrevista cfk ar camp
 entrevista = "Segunda"
+
 drop_12 = False
 
 path_sinautopercepcion_todas = f'C:/Users/Usuario/Desktop/Cori/Tesis/{entrevista}_entrevista/ELcsv nuevo/ELcsv_sinautopercepcion_todos_temas.csv'
@@ -2242,9 +2324,9 @@ if no_autop == True:
     if drop_12 != True:
         df = df.dropna()
     
-        condicion_labels, indices_camp_ar_cfk = indices_condiciones(path_sinautopercepcion_todas, condiciones = [5, 2], drop = vars_no_imp_n[n])
+        condicion_labels, indices_camp_ar_cfk = indices_condiciones(path_sinautopercepcion_todas, condiciones = [5, 2], drop = vars_elim)
     
-df = df.drop(vars_no_imp_n[indice_maximo[0]], axis = 1)
+df = df.drop(vars_elim, axis = 1)
 
 X = df.to_numpy()
 
@@ -2253,8 +2335,112 @@ std_scale.fit(X)
 
 # Aplicamos el estandarizador y obtenemos la matriz de features escaleados
 X_scaled = std_scale.transform(X)
-X_pca = pca1.transform(X_scaled)
+X_pca = pca_cfkArCamp.transform(X_scaled)
 k = 2
 print("PARA LA SEGUNDAAAAAAAAAAAAAAAAA")
-R = R_clausterizacion(X_pca, k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
+#R = R_clausterizacion(X_pca, k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
 
+data = X_pca
+length = np.sqrt((data**2).sum(axis=1))[:,None]
+data_norm = X_pca / length
+
+# fig, ax = plt.subplots(figsize = (18, 10))
+
+# # Hacemos un scatter de los datos en las dos primeras componentes
+# ax.scatter(X_pca[:,0], X_pca[:,1], alpha = 0.65)
+# ax.scatter(data_norm[:,0], data_norm[:,1], alpha = 0.65)
+
+# ax.set_xlabel('Primer componente principal')
+# ax.set_ylabel('Segunda componente principal')
+# plt.show()
+
+k = 2
+#Creación del modelo KMeans 
+kmeans2 = KMeans(n_clusters=k, init = "random",  n_init = 10000, random_state = 42)
+
+#Ajuste del modelo a los datos reducidos en componentes principales PCA
+kmeans2.fit(data_norm)
+R_index2mean = adjusted_rand_score(condicion_labels, kmeans2.labels_) 
+
+
+# grafico PC1 vs PC2
+print(f"Indice R con kmeans {k} y PCA: ", R_index2mean)
+etiquetas(kmeans2.labels_, indices_camp_ar_cfk)
+
+centroids = kmeans2.cluster_centers_
+
+
+markerscluster_colortemas_cfkArCamp(kmeans2.labels_, data_norm, indices_camp_ar_cfk, color = colores_condiciones, save = "cfkArCamp_SEGUNDA_ENT", centroids = centroids, title =  None)
+centroids_manual = np.zeros((k, X_pca.shape[1]))
+
+# Calcular los centroides a mano
+for cluster_label in range(k):
+    # Seleccionar los puntos pertenecientes al cluster actual
+    cluster_points = X_pca[kmeans2.labels_ == cluster_label]
+    # Calcular el centroide como la media de los puntos en el cluster
+    centroid = np.mean(cluster_points, axis=0)
+    # Almacenar el centroide en el array de centroides
+    centroids_manual[cluster_label] = centroid
+    
+markerscluster_colortemas_cfkArCamp(kmeans2.labels_, X_pca, indices_camp_ar_cfk, color = colores_condiciones, save = "cfkArCamp_SEGUNDA_ENT_NOenespaciocosine", centroids = centroids_manual, title =  None)
+#%%#pres y control
+
+if no_autop == True:
+    df_vars = pd.read_csv(path_sinautopercepcion_todas)
+    condicion_labels, indices_pres_cfk = indices_condiciones(path_sinautopercepcion_todas, condiciones = [4,3,1])
+
+df_vars['Condición'] = df_vars['Condición'].map(mapping)
+
+df_vars = df_vars[~df_vars['Condición'].isin([4, 1,3])] #4, 1,3
+
+df_vars = df_vars.drop(['Sujetos', 'Condición'] + eliminamos_pysent, axis=1)
+
+df_vars = df_vars.dropna()
+
+X = df_vars.to_numpy()
+
+# Ajustamos el estandarizador
+std_scale.fit(X)
+
+# Aplicamos el estandarizador y obtenemos la matriz de features escaleados
+X_scaled = std_scale.transform(X)
+X_pca = pca_pres_control.transform(X_scaled)
+
+data = X_pca
+length = np.sqrt((data**2).sum(axis=1))[:,None]
+data_norm = data / length
+
+k = 2
+#Creación del modelo KMeans 
+kmeans2 = KMeans(n_clusters=k, init = "random",  n_init = 10000, random_state = 42)
+
+#Ajuste del modelo a los datos reducidos en componentes principales PCA
+kmeans2.fit(data_norm)
+R_index2mean = adjusted_rand_score(condicion_labels, kmeans2.labels_) 
+
+
+# grafico PC1 vs PC2
+print(f"Indice R con kmeans {k} y PCA: ", R_index2mean)
+etiquetas(kmeans2.labels_, indices_pres_cfk)
+
+centroids = kmeans2.cluster_centers_
+
+centroids_renorm = centroids*length.mean(axis=0)
+
+centroids_manual = np.zeros((k, X_pca.shape[1]))
+
+# Calcular los centroides a mano
+for cluster_label in range(k):
+    # Seleccionar los puntos pertenecientes al cluster actual
+    cluster_points = X_pca[kmeans2.labels_ == cluster_label]
+    # Calcular el centroide como la media de los puntos en el cluster
+    centroid = np.mean(cluster_points, axis=0)
+    # Almacenar el centroide en el array de centroides
+    centroids_manual[cluster_label] = centroid
+    
+#save = "presvscontrol"
+markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, data_norm, indices_pres_cfk, color = colores_condiciones, save = "presvscontrol_SEGUNDA_ENT", centroids = centroids, title =  None)
+
+#markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, X_pca, indices_pres_cfk, color = colores_condiciones, save = None, centroids = centroids_renorm , title =  None)
+
+markerscluster_colortemas_filler_vs_pres(kmeans2.labels_, X_pca, indices_pres_cfk, color = colores_condiciones, save = "presvscontrol_SEGUNDA_ENT_NOenespaciocosine", centroids = centroids_manual , title =  None)
