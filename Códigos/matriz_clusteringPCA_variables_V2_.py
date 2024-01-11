@@ -551,7 +551,7 @@ def markerscluster_colortemas_filler_vs_pres(labels, X, indices, color, save = N
     alpha = 0.75
     colores_with_alpha = [mcolors.to_rgba(color, alpha=alpha) for color in colores]
     color = np.array([colores_with_alpha,]*num_of_groups).transpose()
-    label_cluster = ['C1','C2']
+    label_cluster = ['G1','G2']
     label_tema = ['Control', 'Presencial']
     
     tem = [mpatches.Patch(color=colores_with_alpha[i]) for i in range(num_of_groups)]
@@ -644,7 +644,7 @@ def markerscluster_colortemas_cfkArCamp(labels, X, indices, color, save = None, 
     colores_with_alpha = [mcolors.to_rgba(color, alpha=alpha) for color in colores]
     color = np.array([colores_with_alpha,]*num_of_groups).transpose()
     
-    label_cluster = ['C1','C2']
+    label_cluster = ['G1','G2']
     label_tema = ['CFK', 'Campeones', "Arabia"]
     tem = [mpatches.Patch(color=colores_with_alpha[i]) for i in range(num_of_groups)]
     clust = [plt.plot([], [], marcadores[i], markersize=12, markerfacecolor='w',
@@ -1308,17 +1308,22 @@ fig, axs = plt.subplots(1, 2, figsize = (17, 7))
 im = axs[0].imshow(silouette_paraPCs.T, cmap='flare_r', interpolation='none', aspect = 'auto')
 
 # Agregar barra de colores
-cbar = fig.colorbar(im, ax=axs[0], orientation = "horizontal", pad=0.2, label='Coef. de Silhouette prom.')
+cbar = fig.colorbar(im, ax=axs[0], orientation = "horizontal", pad=0.2)#, label='Coef. de Silhouette prom.')
+cbar.set_label('Coef. de Silhouette prom.', size=20)
+cbar.ax.tick_params(labelsize=19)
 
 axs[0].set_yticks(np.arange(len(silouette_paraPCs[0])), fontsize = 18)
 axs[0].set_yticklabels([2, 3, 4, 5, 6, 7, 8, 9])
-axs[0].set_ylabel("Número de clusters", fontsize = 20)
+axs[0].set_ylabel("Número de grupos", fontsize = 20)
 
 axs[0].set_xticks(np.arange(len(silouette_paraPCs)), fontsize = 18)
 axs[0].set_xticklabels(pcs)
 axs[0].set_xlabel("Número de componentes principales", fontsize = 20)
+axs[0].tick_params(axis='both', labelsize=19)
 
-X_pca, pca, evr = PCA_estandarizando(df_vars,  graph_var = False, graph_PCs = False)
+
+nro_pcs_perfil = 9
+X_pca, pca, evr = PCA_estandarizando(df_vars, n_components = nro_pcs_perfil, graph_var = False, graph_PCs = False)
 X = X_pca
 
 range_n_clusters = [2]
@@ -1329,6 +1334,8 @@ for i, n_clusters in enumerate(range_n_clusters):
     # Crear un objeto de agrupamiento KMeans
     kmeans = KMeans(n_clusters=n_clusters, random_state=42)
     cluster_labels = kmeans.fit_predict(X)
+    
+    cluster_sizes = np.bincount(cluster_labels)
 
     # Calcular el coeficiente de silhouette para el conjunto de datos
     silhouette_avg = silhouette_score(X, cluster_labels)
@@ -1336,6 +1343,16 @@ for i, n_clusters in enumerate(range_n_clusters):
 
     # Calcular los valores de silhouette para cada muestra
     sample_silhouette_values = silhouette_samples(X, cluster_labels)
+    
+    negative_silhouette_counts = np.zeros(n_clusters)
+
+    for j in range(n_clusters):
+        ith_cluster_silhouette_values = sample_silhouette_values[cluster_labels == j]
+        negative_silhouette_counts[j] = np.sum(ith_cluster_silhouette_values < 0)
+    
+    # Imprimir el número de coeficientes negativos en cada grupo
+    for j in range(n_clusters):
+        print(f"En el grupo {j}, hay {negative_silhouette_counts[j]} coeficientes de silhouette negativos y {cluster_sizes[j]} elementos. O sea el {negative_silhouette_counts[j]*100/cluster_sizes[j]}% está mal agrupado.")
 
     # Crear una gráfica de barras para el perfil de silhouette
     y_lower = 10
@@ -1359,12 +1376,12 @@ for i, n_clusters in enumerate(range_n_clusters):
     # Línea vertical para el coeficiente de silhouette promedio de todos los datos
     axs[0].text(0.05, 1.14, "(a)", ha='right', va='top', transform=axs[0].transAxes, fontsize = 27)
     axs[1].text(0.05, 1.1, "(b)", ha='right', va='top', transform=axs[1].transAxes, fontsize = 27)
-    axs[1].set_xlabel("Valor del coeficiente de silhouette")
-    axs[1].set_ylabel("Etiqueta del cluster")
+    axs[1].set_xlabel("Valor del coeficiente de silhouette", fontsize = 20)
+    axs[1].set_ylabel("Etiqueta del grupo", fontsize = 20)
     axs[1].axvline(x=silhouette_avg, color="k", linewidth = 2.5, linestyle="--", label = "Promedio")
     axs[1].set_yticks(yticks)  # Borrar etiquetas y
-    axs[1].set_yticklabels(["C1", "C2"])
-    axs[1].legend(fontsize = 17, loc = "lower right")
+    axs[1].set_yticklabels(["G1", "G2"])
+    axs[1].legend(fontsize = 18, loc = "lower right")
     axs[1].tick_params(axis='both', labelsize=19)
     #ax.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
@@ -1372,9 +1389,9 @@ for i, n_clusters in enumerate(range_n_clusters):
 plt.tight_layout()
 plt.show()
 
-plt.savefig(path_imagenes + '/silhouette2_pres_control_transparente.png', transparent = True)
-plt.savefig(path_imagenes + '/silhouette2_pres_control.png')
-plt.savefig(path_imagenes + '/silhouette2_pres_control.pdf')
+plt.savefig(path_imagenes + f'/silhouette2_pres_control_perfil{nro_pcs_perfil}PCs_transparente.png', transparent = True)
+plt.savefig(path_imagenes + f'/silhouette2_pres_control_perfil{nro_pcs_perfil}PCs.png')
+plt.savefig(path_imagenes + f'/silhouette2_pres_control_perfil{nro_pcs_perfil}PCs.pdf')
 #%% elección nro PCs para filler vs presencial (tarda si kmeans = True), deje solo cargado el dato de como da
 # R_pcs = []
 # #R_pcs_kmeans = []
@@ -1508,14 +1525,14 @@ ax2 = plt.subplot2grid((1, 2), (0, 1), rowspan = 1, colspan=1)
 ax1.scatter(nro_pcs_prueba, R_pcs_metodo, s = 80, color = color_silhouette[2], zorder = 10) 
 ax1.plot(nro_pcs_prueba, R_pcs_metodo, color = color_silhouette[2], zorder = 10)            
 
-ax1.set_xlabel("Nro. PCs", fontsize = 20)
-ax1.set_ylabel("Indice R", fontsize = 20)
+ax1.set_xlabel("Nro. de componentes principales", fontsize = 20)
+ax1.set_ylabel("Índice R", fontsize = 20)
 
 ax1.grid(True)
 
 
-ax1.text(0.15, 0.97, "(a)", ha='right', va='top', transform=ax1.transAxes, fontsize = 27)
-ax2.text(0.15, 0.97, "(b)", ha='right', va='top', transform=ax2.transAxes, fontsize = 27)
+ax1.text(0.1, 0.97, "(a)", ha='right', va='top', transform=ax1.transAxes, fontsize = 27)
+ax2.text(0.1, 0.97, "(b)", ha='right', va='top', transform=ax2.transAxes, fontsize = 27)
 #ax3a.text(0.97, 0.97, "(c)", ha='right', va='top', transform=ax3.transAxes, fontsize = 27)
 
 X = df_vars.to_numpy()
@@ -1548,13 +1565,15 @@ evr = pca.explained_variance_ratio_
 varianza_acumulada = np.cumsum(evr)
 
 ax2.plot(range(1, len(evr) + 1), varianza_acumulada, '.-', markersize = 20, color = color_silhouette[2], zorder = 5)
-ax2.set_ylabel('Fracción acumulada de var. explicada')
-ax2.set_xlabel('Cantidad de componentes principales')
+ax2.set_ylabel('Fracción acumulada de var. explicada', fontsize = 20)
+ax2.set_xlabel('Cantidad de componentes principales', fontsize = 20)
 ax2.axhline(y=varianza_acumulada[8], color=color_gris, linestyle='--', linewidth = 4, label=f'{varianza_acumulada[8]*100:.0f}%')
 ax2.axvline(x = 9, color=color_gris, linestyle='--', linewidth = 4)
 ax2.grid(True)
 #ax2.legend(loc = "lower right", fontsize = 20)
 
+ax1.tick_params(axis='both', labelsize=19)
+ax2.tick_params(axis='both', labelsize=19)
 
 plt.tight_layout() 
 plt.show()
@@ -1985,7 +2004,8 @@ print(vars_no_imp_n[indice_maximo[0]])
 #TODA la data que corrí
 
 vars_elim = ['primera_persona_norm', 'num verb norm', 'cohe_norm_d=3', 'diámetro', 'transitivity', 'average_CC', 'selfloops']
-
+#si usara 6 PCs asumiento que maximiza en 7.5 como antes
+#vars_elim =['primera_persona_norm', 'num verb norm', 'num numeral norm', 'num propn norm', 'Intensidad pysent','cohe_norm_d=3', 'diámetro', 'transitivity', 'average_CC', 'selfloops']
 n = 7.5
 
 nro_pcs_max = 2 #o 3 o 4 también maximizan
@@ -2270,6 +2290,9 @@ centroids = kmeans2.cluster_centers_
 
 
 markerscluster_colortemas_cfkArCamp(kmeans2.labels_, data_norm, indices_camp_ar_cfk, color = colores_condiciones, save = "cfkArCamp", centroids = centroids, title =  None)
+#sin guardar imagen
+#markerscluster_colortemas_cfkArCamp(kmeans2.labels_, data_norm, indices_camp_ar_cfk, color = colores_condiciones, save = None, centroids = centroids, title =  None)
+
 centroids_manual = np.zeros((k, X_pca.shape[1]))
 
 # Calcular los centroides a mano
@@ -2282,6 +2305,8 @@ for cluster_label in range(k):
     centroids_manual[cluster_label] = centroid
     
 markerscluster_colortemas_cfkArCamp(kmeans2.labels_, X_pca, indices_camp_ar_cfk, color = colores_condiciones, save = "cfkArCamp_NOenespaciocosine", centroids = centroids_manual, title =  None)
+#sin guardar imagen
+#markerscluster_colortemas_cfkArCamp(kmeans2.labels_, X_pca, indices_camp_ar_cfk, color = colores_condiciones, save = None, centroids = centroids_manual, title =  None)
 
 #k = 2
 #R = R_clausterizacion(X_pca, k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
