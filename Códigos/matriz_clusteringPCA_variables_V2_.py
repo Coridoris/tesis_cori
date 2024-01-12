@@ -1798,16 +1798,19 @@ im = axs[0].imshow(silouette_paraPCs.T, cmap='PuBu_r', interpolation='none', asp
 
 # Agregar barra de colores
 cbar = fig.colorbar(im, ax=axs[0], orientation = "horizontal", pad=0.2, label='Coef. de Silhouette prom.')
+cbar.set_label('Coef. de Silhouette prom.', size=20)
+cbar.ax.tick_params(labelsize=19)
 
 axs[0].set_yticks(np.arange(len(silouette_paraPCs[0])), fontsize = 18)
 axs[0].set_yticklabels([2, 3, 4, 5, 6, 7, 8, 9])
-axs[0].set_ylabel("Número de clusters", fontsize = 20)
+axs[0].set_ylabel("Número de grupos", fontsize = 20)
 
 axs[0].set_xticks(np.arange(len(silouette_paraPCs)), fontsize = 18)
 axs[0].set_xticklabels(pcs)
 axs[0].set_xlabel("Número de componentes principales", fontsize = 20)
+axs[0].tick_params(axis='both', labelsize=19)
 
-X_pca, pca, evr = PCA_estandarizando(df,  graph_var = False, graph_PCs = False)
+X_pca, pca, evr = PCA_estandarizando(df,n_components= 2,  graph_var = False, graph_PCs = False)
 X = X_pca
 
 range_n_clusters = [2]
@@ -1818,6 +1821,8 @@ for i, n_clusters in enumerate(range_n_clusters):
     # Crear un objeto de agrupamiento KMeans
     kmeans = KMeans(n_clusters=n_clusters, random_state=42)
     cluster_labels = kmeans.fit_predict(X)
+    
+    cluster_sizes = np.bincount(cluster_labels)
 
     # Calcular el coeficiente de silhouette para el conjunto de datos
     silhouette_avg = silhouette_score(X, cluster_labels)
@@ -1825,6 +1830,17 @@ for i, n_clusters in enumerate(range_n_clusters):
 
     # Calcular los valores de silhouette para cada muestra
     sample_silhouette_values = silhouette_samples(X, cluster_labels)
+    
+    negative_silhouette_counts = np.zeros(n_clusters)
+
+    for j in range(n_clusters):
+        ith_cluster_silhouette_values = sample_silhouette_values[cluster_labels == j]
+        negative_silhouette_counts[j] = np.sum(ith_cluster_silhouette_values < 0)
+    
+    # Imprimir el número de coeficientes negativos en cada grupo
+    for j in range(n_clusters):
+        print(f"En el grupo {j}, hay {negative_silhouette_counts[j]} coeficientes de silhouette negativos y {cluster_sizes[j]} elementos. O sea el {negative_silhouette_counts[j]*100/cluster_sizes[j]}% está mal agrupado.")
+
 
     # Crear una gráfica de barras para el perfil de silhouette
     y_lower = 10
@@ -1848,11 +1864,11 @@ for i, n_clusters in enumerate(range_n_clusters):
     # Línea vertical para el coeficiente de silhouette promedio de todos los datos
     axs[0].text(0.05, 1.14, "(a)", ha='right', va='top', transform=axs[0].transAxes, fontsize = 27)
     axs[1].text(0.05, 1.1, "(b)", ha='right', va='top', transform=axs[1].transAxes, fontsize = 27)
-    axs[1].set_xlabel("Valor del coeficiente de silhouette")
-    axs[1].set_ylabel("Etiqueta del cluster")
+    axs[1].set_xlabel("Valor del coeficiente de Silhouette", fontsize = 20)
+    axs[1].set_ylabel("Etiqueta del grupo", fontsize = 20)
     axs[1].axvline(x=silhouette_avg, color="k", linewidth = 2.5, linestyle="--", label = "Promedio")
     axs[1].set_yticks(yticks)  # Borrar etiquetas y
-    axs[1].set_yticklabels(["C1", "C2"])
+    axs[1].set_yticklabels(["G1", "G2"])
     axs[1].legend(fontsize = 17, loc = "lower right")
     axs[1].tick_params(axis='both', labelsize=19)
     #ax.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
@@ -1860,7 +1876,7 @@ for i, n_clusters in enumerate(range_n_clusters):
     #plt.title(f"Perfil de Silhouette para n_clusters = {n_clusters}")
 plt.tight_layout()
 plt.show()
-
+#%% guardar el gráfico
 plt.savefig(path_imagenes_cfk_ar_camp + '/silhouette2_cfk_pres_ar_transparente.png', transparent = True)
 plt.savefig(path_imagenes_cfk_ar_camp + '/silhouette2_cfk_pres_ar_control.png')
 plt.savefig(path_imagenes_cfk_ar_camp + '/silhouette2_cfk_pres_ar_control.pdf')
@@ -2163,7 +2179,7 @@ axs[1].text(0.05, 1.1, "(b)", ha='right', va='top', transform=axs[1].transAxes, 
     #plt.title(f"Perfil de Silhouette para n_clusters = {n_clusters}")
 plt.tight_layout()
 plt.show()
-
+#%% guardar la figura
 plt.savefig(path_imagenes_cfk_ar_camp + '/eleccionPCs_cfk_pres_ar_transparente.png', transparent = True)
 plt.savefig(path_imagenes_cfk_ar_camp + '/eleccionPCs_cfk_pres_ar_control.png')
 plt.savefig(path_imagenes_cfk_ar_camp + '/eleccionPCs_cfk_pres_ar_control.pdf')
@@ -2311,7 +2327,7 @@ markerscluster_colortemas_cfkArCamp(kmeans2.labels_, X_pca, indices_camp_ar_cfk,
 #k = 2
 #R = R_clausterizacion(X_pca, k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
 
-#%% segunda entrevista cfk ar camp
+#%% segunda entrevista 
 entrevista = "Segunda"
 
 drop_12 = False
@@ -2324,7 +2340,7 @@ if eliminando_outliers == True:
     path_sinautopercepcion_todas = f'C:/Users/Usuario/Desktop/Cori/Tesis/{entrevista}_entrevista/ELcsv nuevo/ELcsv_sinautopercepcion_sinoutliers_todos_temas.csv'
 
     path_conautopercepcion_todas = f'C:/Users/Usuario/Desktop/Cori/Tesis/{entrevista}_entrevista/ELcsv nuevo/ELcsv_conautopercepcion_sinoutliers_todos_temas.csv'
-
+#%%cfk ar camp
 df = pd.read_csv(path_conautopercepcion_todas)
 
 df = df.dropna()

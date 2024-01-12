@@ -381,10 +381,11 @@ if eliminando_outliers == True:
 
 #%% dataframe con PCs en primer y segundo tiempo con transformación para optimizar R de la primer entrevista
 
-save = True
+save = False
+print_F_y_eso = False
 
 vars_sig_PC1 = ["num_nodes_LSC", "Comunidades_LSC", "density", "num_palabras_unicas_norm"] #si no queda mal agregaria k_mean, L3, L2, pesan bastante
-vars_sig_PC2 = ["Valencia e intensidad2 pysent", "Negativo pysent", "Positivo pysent", "Intensidad pysent"] #si no queda mal Intensidad pysent
+vars_sig_PC2 = ["Valencia e intensidad2 pysent", "Negativo pysent", "Valencia2 pysent", "Positivo pysent"]#, "Intensidad pysent"] #si no queda mal Intensidad pysent
 vars_sig_PC3 = ["Detalles externos norm", "Detalles internos norm"]
 vars_sig_PC4 = ["cohe_norm_d=1", "cohe_norm_d=2"]
 
@@ -538,6 +539,7 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
     for i, var in enumerate(variables_dependientes):
         
         aov = df_pca.rm_anova(dv = var, within='Tiempo', subject='Sujetos',  detailed=False)
+
         
         # Definir los grados de libertad del numerador y del denominador
         df_between = aov['ddof1'][0]  # Grados de libertad del numerador
@@ -550,6 +552,27 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
         F_critico.append(f_critical)
         epsilon.append(aov['eps'][0])
         p.append(aov['p-unc'][0])
+        
+        for clave, valor in mapping.items():
+            if valor == valor_a_buscar:
+                clave_correspondiente = clave
+                break
+        if print_F_y_eso == True:
+            print(aov)
+            print(f"la condición es {clave_correspondiente}")
+            print(f"la variable es {var}")
+            print(f"los grados de libertad del denominador {df_within}")    # Grados de libertad del denominador
+            print(f"los grados de libertad del nominador {df_between}")
+            
+            print(f"Valor crítico de F: {f_critical}")
+    
+            print(f"Valor de F: {aov['F'][0]}")
+    
+            print(f"Valor de p: {aov['p-unc'][0]}")
+    
+            print(f"Valor de epsilon: {aov['eps'][0]}")
+    
+            print(f"Valor de eta es: {aov['ng2']}")
         
         if f_critical > aov['F'][0]:
             #print('La variable ' + var + f" tiene un F ({aov['F'][0]}) que no supera el crítico ({f_critical}).")
@@ -586,10 +609,6 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
         'P significativo?': psignificativas,
     })
     
-    for clave, valor in mapping.items():
-        if valor == valor_a_buscar:
-            clave_correspondiente = clave
-            break
         
     print(f"la cantidad de vars significativas en {clave_correspondiente} es {len(vars_sig)}")
     print(f"las variables significativas son {vars_sig}")
@@ -632,7 +651,7 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
                 ax1.set_yticks([0, 3, 6, 9, 12])
                 ax1.tick_params(axis='both', labelsize=15)
                 #plt.gca().set_zorder(10)
-                ax1.set_xlabel(f"Componente principal {nro}", fontsize = 18)
+                #ax1.set_xlabel(f"Componente principal {nro}", fontsize = 18)
                 ax1.set_ylabel("Cuentas", fontsize = 18)
                 #plt.title(f'{clave_correspondiente}')
                 ax1.legend(fontsize = 15)
@@ -641,6 +660,7 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
 
     
                 if var_sig == "PC1":
+                    ax1.set_xlabel("Primer componente principal", fontsize = 18)
                     var1 = vars_sig_PC1[0]
                     var2 = vars_sig_PC1[1]
                     var3 = vars_sig_PC1[2]
@@ -656,11 +676,13 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
                     data8 = df_vars_tiempo_2[vars_sig_PC1[3]]
                 
                 if var_sig == "PC2":
+                    ax1.set_xlabel("Segunda componente principal", fontsize = 18)
                     var1 = vars_sig_PC2[0]
                     var2 = vars_sig_PC2[1]
                     var3 = vars_sig_PC2[2]
                     var4 = vars_sig_PC2[3]
-                    vars_label = ["Val. e inten.", "Negativo", "Positivo", "Intensidad"]
+                    vars_label = ["Val. e inten.", "Negativo", "Valencia", "Positivo"]#, "Intensidad"] 
+                    print(var1, var2, var3, var4)
                     data1 = df_vars_tiempo_1[vars_sig_PC2[0]]
                     data2 = df_vars_tiempo_2[vars_sig_PC2[0]]
                     data3 = df_vars_tiempo_1[vars_sig_PC2[1]]
@@ -671,6 +693,7 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
                     data8 = df_vars_tiempo_2[vars_sig_PC2[3]]
                     
                 if var_sig == "PC3":
+                    ax1.set_xlabel("Tercera componente principal", fontsize = 18)
                     var1 = "num advs norm"
                     var2 = "ASP"
                     var3 = "k_mean"
@@ -745,14 +768,14 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
                 ax1.set_yticks([0, 3, 6, 9, 12])
                 ax1.tick_params(axis='both', labelsize=15)
                 #plt.gca().set_zorder(10)
-                ax1.set_xlabel(f"Componente principal {nro}", fontsize = 18)
+                #ax1.set_xlabel(f"Componente principal {nro}", fontsize = 18)
                 ax1.set_ylabel("Cuentas", fontsize = 18)
                 #plt.title(f'{clave_correspondiente}')
                 ax1.legend(fontsize = 15)
                 ax1.grid(True, zorder = 5)
                 
                 if var_sig == "PC3":
-
+                    ax1.set_xlabel("Tercera componente principal", fontsize = 18)
                     var1 = vars_sig_PC3[0]
                     var2 = vars_sig_PC3[1]
                     vars_label = ["Detalles externos", "Detalles internos"]
@@ -762,6 +785,7 @@ for l, (cond_elim, valor_a_buscar) in enumerate(zip(condiciones_elim, valor_a_bu
                     data4 = df_vars_tiempo_2[vars_sig_PC3[1]]
                 
                 if var_sig == "PC4":
+                    ax1.set_xlabel("Cuarta componente principal", fontsize = 18)
                     var1 = vars_sig_PC4[0]
                     var2 = vars_sig_PC4[1]
                     vars_label = ["Coherencia d = 1", "Coherencia d = 2"]
