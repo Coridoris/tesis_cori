@@ -145,56 +145,249 @@ Para el segundo tiempo se obtiene una matriz de correlación muy similar (ver Fi
 
 \section{Busqueda de los cuantificadores usando PCA y aprendizaje no supervisado (o clustering)}
 
-En esta sección se utilizará una reducción de dimensionalidad únicamente con las variables obtenidas de los relatos y luego se buscó el agrupamiento natural que surgia de los datos.
+En esta sección se utilizará una reducción de dimensionalidad únicamente con las variables obtenidas de los relatos y luego se buscó el agrupamiento natural que surgía de los datos haciendo clustering con Kmeans.
 
 El procedimiento fue el siguiente, inicialmente se buscó separar uno de los relatos autobiográficos, el relato de vuelta a la presencialidad del relato de control que era una memoria no consolidada (se le preguntaba a los participantes qué hicieron antes de ir a la entrevista). Se decidió utilizar estos dos relatos pues son los únicos dos que no son memorias colectivas y ponen prioridad a la primera persona. 
-Inicialmente se hacía reducción de dimensionalidad y con todas las componentes principales se buscaba el número de grupos óptimo para hacer el agrupamiento con la validación interna dada por Silhuette. Luego se hacía un barrido en el número de componentes principales con las que se buscaría después el agrupamiento con el objetivo de maximizar la validación externa. La validación externa contaba de un test R que compara las etiquetas externas de los relatos con las obtenidas del agrupamiento con clustering. Luego, una vez que se tenía las componentes principales que optimizaban la validación externa se buscaba las variables mas importantes en ellas. Estos resultados se pueden encontrar en la subsección \ref{sec:PCspresvscontrol}.
+Inicialmente se buscaba el número óptimo de grupos con la validación interna dada por Silhouette. Para ello se hacía un análisis de componentes principales y se barría tanto el número de componentes como el número de grupos (clusters). Luego dejando fijo el número de grupos se hacía un barrido en el número de componentes principales y se volvía 
+a hacer clustering con el objetivo de encontrar cuando se maximizaba la validación externa. La validación externa contaba de un test R que compara las etiquetas externas de los relatos con las obtenidas del agrupamiento con clustering. Luego, una vez que se tenía el número de componentes principales se buscaba las variables mas importantes en ellas. Estos resultados se pueden encontrar en la subsección \ref{sec:PCspresvscontrol}.
 
-Solo con las variables mas importantes que se obtenian de las componentes principales que optimizaban la validacióne externa para agrupar los relatos de presencialidad y control se seguía el mismo procedimiento para agrupar los relatos restantes (campeones, CFK y Arabia), lo cual se puede encontrar en la subsección \ref{sec:PCscamparCFK}.
+Se buscó las variables mas importantes de las componentes principales que optimizaban la validación externa para agrupar los relatos de presencialidad y control. Sólo con esas variables se seguía el mismo procedimiento para agrupar los relatos restantes (campeones, CFK y Arabia), lo cual se puede encontrar en la subsección \ref{sec:PCscamparCFK}.
 
 \colorbox{yellow}{pongo esto aca no? Y en métodos solo explico el algoritmo de reducción usado y el de agrupamiento, no esto}
 
 \colorbox{yellow}{en caso de mover esto a métodos, qué escribo aca para introducir?}
 
+
 \subsection{Memoria autobiográfica contra memoria no consolidada}
 \label{sec:PCspresvscontrol}
-solo con kmeans mostrar 
-primero control vs presencial slihouette para definición de k, mostrar varianza acumulada vs nro PCs, contar que para definir nro PCS se barrió buscando maximizar R (ese gráfico) y PC2 vs PC1 color y forma para cluster y condición, valor de R y matriz de confusión en pie de figura. Mostrar las PCs que usé y hablar de las variables mas importantes de ahí. Mostrar como queda todo en el segundo tiempo usando ESTAS PCs.
+
+Se buscó el agrupamiento natural que surgía al hacer clustering en los relatos de presencial y control luego de aplicar una reducción de dimensionalidad.
+Inicialmente se buscó con la validación interna de Silhouette cuál era el número de grupos óptimo para la separación. Dado a que también se iba a hacer una redución de dimensionalidad con PCA se hizo un barrido no sólo en el número de grupos, sino también en el número de componentes principales, y en cada caso se buscó el coeficiente promedio de Silhouette. Estos resultados se pueden ver en la Figura \ref{fig:cap3_defk_controlpres}(a). Se puede observar que en todos los números de componentes principales el mayor coeficiente de Silhouette promedio corresponde a dos clusters, cuyo perfil de Silhouette para el caso de 9 componentes principales se puede observar en la Figura \ref{fig:cap3_defk_controlpres}(b). En la misma se puede apreciar que todos los elementos del primer cluster se encuentran con un coeficiente positivo, mientras que en el segundo cluster menos del 10$\%$ tienen un coeficiente negativo. Se decidió continuar entonces con dos grupos. \colorbox{yellow}{decidí mostrar con 9PCs pq después es lo que usamos, pero en 6 PCs no da negativo nada, muestro mejor ese?}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf} 
-    \caption{Definición de k \textbf{(a)}  \textbf{(b)}}
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/silhouette2_pres_control_perfil9PCs.pdf} 
+    \caption{Gráficos para la definición del número de clusters utilizado para el agrupamiento de los relatos de presencial y control. En \textbf{(a)} se observa la matriz del coeficiente de Silhouette promedio en un barrido del número de clusters y el número de componentes principales utilizadas. El valor del coeficiente viene dado por la barra de color debajo de la matriz. Se graficó de 6 a 21 componentes principales pero en todo el rango se veía el mismo comportamiento. En \textbf{(b)} se observa el perfil de Silhouette para dos clusters cuando se toman 9 componentes principales.}
 \label{fig:cap3_defk_controlpres}
 \end{figure}
 
-\begin{figure}[h]
+Luego se buscó el número de componentes principales que maximizan la validación interna hecha con el índice R. Para ello se graficó este índice en función del número de componentes como se ve en la Figura \ref{fig:cap3_defpcscontrolpres}(a). En esta se observa que el índice R toma su máximo valor desde las 9 componentes principales en adelante. Con la intención de reducir la dimensionalidad se decidió tomar solo 9 componentes principales. La varianza total acumulada en estas componentes es de casi el 80$\%$ como se puede observar en la Figura \ref{fig:cap3_defpcscontrolpres}(b).
+
+\begin{figure}[H]
     \centering
     \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf} 
-    \caption{Definición número de componentes principales \textbf{(a)}  \textbf{(b)}}
+    \caption{Definición número de componentes principales. En \textbf{(a)} se observa el índice R en función del número de componentes principales. En \textbf{(b)} la varianza total acumulada al aplicar el análisis de componentes principales. Se marca en línea punteada el valor que toma para 9 componentes.}
 \label{fig:cap3_defpcscontrolpres}
 \end{figure}
+
+En la Figura \ref{fig:cap3_9PCscontrolpres} se graficó la dependencia de las componentes principales en función de las variables originales. Destaca que la mayoría de componentes principales son principalmente combinaciones lineales de variables de la misma categoría. Se puede observar que la primer componente principal depende principalmente del número de palabras y la mayoría de variables estructurales de redes. En la segunda componente tienen mucho peso todas las variables de sentimiento menos intensidad. La tercer componente tiene principalmente variables estructurales de coherencia, aunque también tienen importancia no despreciable variables de contenido y memoria, al igual que la cuarta componente donde la importancia de cada categoría se ve mas distribuida. La quinta componente principal tiene principalmente variables de memoria. La sexta, octava y novena son variables de contenido, y la séptima mezcla variables de contenido y sentimiento.
+
+\colorbox{yellow}{no se si no mover esto a apéndice}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf} 
-    \caption{Componentes principales de pres y control \textbf{(a)}  \textbf{(b)}}
+    \caption{Combinación lineal de las componentes principales de los relatos de presencial control en función de las variables originales. El color indica el coeficiente que acompaña a la variable en la combinación lineal.}
 \label{fig:cap3_9PCscontrolpres}
+\end{figure}
+
+Finalmente se graficó los datos de los relatos de presencial y control en la primera y segunda componente principal como se puede observar en la Figura \ref{fig:cap3_PC1vsPC2presycontrol}. En la misma el color representa los distintos relatos y la forma los distintos grupos. El índice R es de 0,23 y la matriz de confusión se puede observar en la Tabla \ref{tab:confusion_matrix_PyC}.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \multicolumn{1}{|c|}{} & \multicolumn{3}{c|}{\textbf{Condición real}} \\
+        \cline{2-4}
+        \multicolumn{1}{|c|}{} & & \textbf{Control} & \textbf{Presencial} \\
+        \hline
+        \multirow{2}{*}{\textbf{Condición clustering}} & \textbf{Control} & 47 & 18 \\
+        \cline{2-4}
+        & \textbf{Presencial} & 10 & 36 \\
+        \hline
+    \end{tabular}
+    \caption{Matriz de confusión para las condiciones de presencial y control.}
+    \label{tab:confusion_matrix_PyC}
+\end{table}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf} 
+    \caption{Resultado del clustering para las condiciones de control y presencial. El color representa las distintas condiciones, las formas los distintos grupos (clusters). El índice R es de 0,23.}
+\label{fig:cap3_PC1vsPC2presycontrol}
 \end{figure}
 
 
 \subsection{Memorias con distinta valencia e intensidad}
 \label{sec:PCscamparCFK}
-Después se busca separar cfk, ar y campeones, primero buscamos usando todas las vars nro pcs vs k silhouette y se definió k, discutir que se ve que aumentar k deja campeones entero pero cfk y arabia quedan juntas, hablar de que son parecidas en emotividad y que se las pasa a considerar un único relato. Dsp  n vs nro pcs una matriz del R para definir n y nro PCs, decir las variables que se eliminan y mostrar varianza acumulada vs nro PCs y dsp las PCs que maximizan R. Mostrar PC1 vs PC2 con los colores y marcadores con condicion y cluster y en pie el R y la matriz de confusión. Mostrar en el segundo tiempo este mismo gráfico.
-EN DISCUSIÓN MENCIONÁ QUE A FUTURO SE PODRÍA VER DE AGREGAR COSAS EXTERNAS AL RELATO COMO EL SEM, EL CUESTIONARIO POSTENTREVISTA Y VER SI ESTOS MEJORAN LA PERFORMANCE, PERO QUE HASTA ACA LLEGAMOS CON SOLO LAS VARIABLES DE RELATO QUE USAMOS
+
+Se continuó buscando agrupar las condiciones de CFK, Arabia y campeones.  Inicialmente se buscó el número de grupos óptimo para agrupar mediante una validación interna con el coeficiente de Silhouette. Para ello se calculó el coeficiente de Silhouette promedio haciendo un barrito tanto en el número de grupos y el número de componentes principales. Los resultados se pueden observar en la Figura \ref{fig:cap3_defk_cfkArCamp}(a) donde se puede ver que para todas las componentes principales se obtiene el mayor coeficiente de Silhouette promedio con 2 grupos. En la Figura \ref{fig:cap3_defk_cfkArCamp}(b) se puede observar el perfil de Silhouette en el caso particular de usar solo dos componentes principales, se puede ver que en el primer grupo todos los elementos fueron clasificados con coeficientes de Silhouette mayor a 0 y en el segundo grupo menos del 3$\%$ fue clasificado con un coeficiente menor a 0. Dado a que los relatos son de tres condiciones distintas se investigó cómo se distribuyen los relatos entre los grupos. Se observó lo que suele suceder es que se tiene un grupo del relato de campeones y otro de los relatos de CFK y Arabia. Si se aumenta el número de grupos el cluster de campeones sigue unido mientras que el otro se va dividiendo mezclando ambos relatos. Estos resultados se pueden ver en el Apéndice \colorbox{yellow}{hacer. o lo discuto después de la última figura de pc1 vs pc2 aumentando el número de grupo?}
+
+\colorbox{yellow}{discutir en discusión que debe ser por la valencia e intensidad q no son muy distintas}. Se decidió continuar entonces tomando solo dos grupos.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/silhouette2_cfk_pres_ar_control.pdf} 
+    \caption{Definición del número de grupos mediante validación interna con el coeficiente de Silhouette. En \textbf{(a)} se observa el coeficiente de Silhouette promedio de los relatos CFK, Arabia y campeones al hacer un barrido del número de grupos y el número de componentes principales. El barrido de número de componentes se hizo para todo el rango posible pero no se graficó todo por cuestiones de visualización. En todo el rango el comportamiento es similar. En \textbf{(b)} se observa el perfil de Silhouette para el caso particular de dos componentes principales.}
+\label{fig:cap3_defk_cfkArCamp}
+\end{figure}
+
+Luego se buscó el número óptimo de componentes principales y las variables a utilizar para hacer el agrupamiento.\colorbox{yellow}{de aca} Para seleccionar las variables se tomó las 9 componentes principales utilizadas en la separación de los relatos de presencial y control (de la Figura \ref{fig:cap3_9PCscontrolpres}) y se buscó las variables mas importantes en estas. El barrido fue hecho de la siguiente manera, inicialmente se tomaban n variables de la primer componente principal, donde en caso de que n no sea un número entero se lo redondeaba. Luego para elegir cuántas variables se tomaba de la segunda componente se buscaba cuánta varianza explicaba la misma, llamamosle a esta cantidad $var_{PC2}$, y se la comparaba respecto de la varianza de la primer componente principal $var_{PC1}$. Luego, se tomaban n$\frac{var_{PC2}}{var_{PC1}}$ variables de la segunda componente principal. En caso de no ser un número entero se lo redondeaba. Para la tercera se n$\frac{var_{PC3}}{var_{PC1}}$ tomaban variables, y así se hizo con cada componente. Luego se utilizaba la unión de todas estas variables para hacer el agrupamieto.\colorbox{yellow}{hasta aca podría ir en métodos}. 
+Entonces se hizo un barrido del número de componentes pricipales y el número de variables que se tomaba de la primer componente principal y se hacía reducción de dimensionalidad y después clustering de los relatos de CFK, Arabia y campeones, y para cada combinación se calculaba el índice R para hallar la combinación que maximizaba esta validación externa. En la Figura \ref{fig:cap3_defPCs_cfkArCamp}(a) se observan estos resultados. Se obtiene que el mayor índice R eliminando siete variables (primera persona, número de verbos, coherencia a distancia 3, diámetro, transitividad, coeficiente de clustering promedio y loops de uno). El número de componentes principales puede ser 2, 3 o 4, en todos esos casos el índice es el mismo. Por simplificación se decidió continuar con dos componentes principales. En la Figura \ref{fig:cap3_defPCs_cfkArCamp}(b) se puede ver la varianza acumulada explicada al hacer reducción de dimensionalidad solo con las variables que maximizan el índice R. Las primeras dos componentes explican aproximadamente un 45$\%$ de la varianza.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/eleccionPCs_cfk_pres_ar_control.pdf} 
+    \caption{Definición del número de componentes principales y las variables que se utilizarán luego para hacer clustering. En \textbf{(a)} se ve el valor del índice R (validación con las etiquetas externas de los relatos) ante un barrido en el número de PCs y el número de variables tomada en la primer componente principal. Se graficó hasta trece componentes pues el comportamiento de allí en adelante es el mismo. En \textbf{(b)} se ve la fracción acumulada de varianza de los datos solo utilizando las variables que maximizan el índice R. En línea punteada se marca el valor para dos componentes principales.}
+\label{fig:cap3_defPCs_cfkArCamp}
+\end{figure}
+
+
+Las primeras dos componentes principales se pueden observar en la Figura \ref{fig:cap3_PC1vsPC2cfkArCamp}. Se puede ver que la primer componente es una combinación lineal donde el mayor peso lo tiene el número de palabras y todas las variables estructurales de redes. La segunda componente es una combinación de todas las variables de sentimiento, donde intensidad tiene un peso menor al resto.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/2PCs_cfk_pres_ar_control.pdf} 
+    \caption{Primeras dos componentes principales que maximizan la validación externa del índice R para los relatos de CFK, Arabia y campeones.}
+\label{fig:cap3_2PCscfkArCamp}
+\end{figure}
+
+Por último se graficó los relatos proyectados en la primera y segunda componente principal. El color denota las diferentes condiciones, la forma los distintos grupos. El índice R de esta configuración es de 0,25, sube a 0,34 al tratar a Arabia y CFK como una única condición. La matriz de confusión se puede ver en la Tabla \ref{tab:confusion_matrix_CFKARcamp}
+
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+        %\hline
+        \cline{2-5}
+        \multicolumn{1}{|c|}{} & \multicolumn{4}{c|}{\textbf{Condición real}} \\
+        \cline{2-5}
+        \multicolumn{1}{|c|}{} & & \textbf{CFK} & \textbf{Arabia} & \textbf{Campeones} \\
+        \hline
+        \multirow{2}{*}{\textbf{Condición clustering}} & \textbf{CFK y Arabia} & 41 & 35 & 4 \\
+        \cline{2-5}
+        & \textbf{Campeones} & 12 & 18 & 50 \\
+        \hline
+    \end{tabular}
+    \caption{Matriz de confusión \colorbox{yellow}{le digo asi?} para las condiciones de CFK, Arabia y campeones.}
+    \label{tab:confusion_matrix_CFKARcamp}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Primer tiempo/cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf} 
+    \caption{Relatos de CFK, Arabia y campeones proyectados en la primera y segunda componente principal. El color denota las diferentes condiciones y la forma el grupo al que pertenecen. \colorbox{yellow}{CAMBIA C1 C2 POR G1 G2}}
+\label{fig:cap3_PC1vsPC2cfkArCamp}
+\end{figure}
+
+
+\section{Agrupamiento natural (o clustering) en la segunda entrevista}
+
+\colorbox{yellow}{la de presencial y control creo q es la idea, los cuantificadores son los que encontramos en la segunda entrevista y fin pero ya la escribo x por las dudas}
+
+En esta sección se contará los resultados del agrupamiento de los datos en la segunda entrevista. Se utilizará las mismas componentes principales que en la primer entrevista. Para las condiciones de presencial y control se utilizaran las 9 componentes principales de la Figura \ref{fig:cap3_9PCscontrolpres} y para las condiciones de CFK, Arabia y campeones las dos componentes de \ref{fig:cap3_2PCscfkArCamp}.
+
+Los resultados para las condiciones de presencial y control se pueden ver en la Figura \ref{fig:cap3_PC1vsPC2pres_control_segundot}, donde se proyectó los relatos en la primera y segunda componente principal y se marcó los grupos con formas y las condiciones con formas. El índice R de la configuración es de 0,13, el mismo bajó respecto de la primer entrevista. La matriz de confusión se puede ver en la Tabla \ref{tab:confusion_matrix_PyC_2t}. Se tiene que el 78$\%$ de los relatos de control fueron bien clasificados y el 62$\%$ de los de presencial.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Segundo tiempo/presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf} 
+    \caption{Relatos de las condiciones de presencial y control en la segunda entrevista proyectador en la primera y segunda componente principal y agrupados en dos grupos. Los grupos se denota con las formas, las condiciones con colores.}
+\label{fig:cap3_PC1vsPC2pres_control_segundot}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        %\hline
+        \cline{3-4}
+        \multicolumn{1}{c|}{} & \multicolumn{3}{c|}{\textbf{Condición real}} \\
+        \cline{3-4}
+        \multicolumn{1}{c}{} & & \textbf{Control} & \textbf{Presencial} \\
+        \hline
+        \multirow{2}{*}{\textbf{Condición clustering}} & \textbf{Control} & 41 & 20 \\
+        \cline{2-4}
+        & \textbf{Presencial} & 11 & 32 \\
+        \hline
+    \end{tabular}
+    \caption{Matriz de confusión para las condiciones de presencial y control en la segunda entrevista.}
+    \label{tab:confusion_matrix_PyC_2t}
+\end{table}
+
+
+Los resultados para las condiciones de CFK, Arabia y campeones se pueden observar en la Figura \ref{fig:cap3_PC1vsPC2cfkArCamp_segundot}. Allí se puede ver los relatos de las condiciones proyectados en la primer y segunda componente luego de haber hecho el agrupamiento. El índice R del agrupamiento es de 0,25 al igual que en el primer tiempo. Si se toma a CFK y Arabia como una única condición sube a 0,33. La matriz de confusión se puede ver en la Tabla \ref{tab:confusion_matrix_CFKARcamp_2t} donde se puede ver que mas del 90$\%$ de los datos de campeones fueron correctamente clasificádos, el 76$\%$ para CFK y el 73$\%$ para Arabia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{figures/ch03/PCA_clustering/Segundo tiempo/cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf} 
+    \caption{Relatos de las condiciones de CFK (azul), Arabia (celeste) y campeones (verde) en la segunda entrevista proyectador en la primera y segunda componente principal y agrupados en dos grupos. Los grupos se denota con las formas, las condiciones con colores.}
+\label{fig:cap3_PC1vsPC2cfkArCamp_segundot}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+        %\hline
+        \cline{3-5}
+        \multicolumn{2}{c|}{} & \multicolumn{3}{c|}{\textbf{Condición real}} \\
+        \cline{3-5}
+        \multicolumn{1}{c}{} & & \textbf{CFK} & \textbf{Arabia} & \textbf{Campeones} \\
+        \hline
+        \multirow{2}{*}{\textbf{Condición clustering}} & \textbf{CFK y Arabia} & 42 & 39 & 5 \\
+        \cline{2-5}
+        & \textbf{Campeones} & 13 & 14 & 50 \\
+        \hline
+    \end{tabular}
+    \caption{"Matriz de confusión" \colorbox{yellow}{le digo asi?} para las condiciones de CFK, Arabia y campeones.}
+    \label{tab:confusion_matrix_CFKARcamp_2t}
+\end{table}
+
 
 \section{Comparación entre ambos tiempos}
-Comparamos los ANOVAS de cada condición en el primer tiempo y en el segundo a ver si se ven cambios en los cuantificadores por la edad de la memoria. Hacer gráfico de las PCs con diferencias significativas en el primer tiempo y en el segundo, el gráfico es un histograma de la PC en primero y en segundo a ver para que lado fue y al costado en 2D las vars mas importantes de esta PC boxplots en primero y segundo tiempo (ver carpeta papel el gráfico si no te acordas cual es la idea)
+
+En esta sección se estudiarán las diferencias de las componentes principales de cada condición por el paso del tiempo. Para ello se realizó un one way ANOVA para cada condición y se observó en cuales componentes las medias tenían diferencias significativas.
+
+Recordando el resultado de la sección \ref{sec:PCAyclustering}.\ref{sec:PCscamparCFK} en la Figura \ref{fig:cap3_2PCscfkArCamp}, la primer componente esta compuesta principalmente por las variables estructurales de redes y el número de palabras, mientras que en la segunda componente tienen mayor peso en la combinación lineal las variables de sentimiento.
+
+Para la condición de Arabia se observó diferencias significativas en las dos componentes principales. En particular para la primer componente se tenía F$_{1,49}$ = 13,05, p = 0,0007 y $\eta_g^2$ = 0,06. En la Figura \ref{fig:cap3_ArPC1} se puede observar la distribución de la primer componente para cada tiempo y también a su derecha se puede ver la media y error estándar de las cuatro variables con mayor peso en la combinación lineal de esta componente. En ella se ve que la primer componente principal disminuye su media en el segundo tiempo. Viendo lo que sucede con las medias de las primeras 4 variables que la componen, se ve que en 3 de ellas la media disminuye. El número de nodos y palabras nos hablan de que el relato en el segundo tiempo en promedio fue mas corto que el primero. \colorbox{yellow}{no se q decir del núm de comunidades y densidad :) un poco lo mismo dicen...}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 14cm]{figures/ch03/DosTiempos/arabia_PC1.pdf} 
+    \caption{Histogramas de la primer componente principal en el primer y segundo tiempo para la condición de Arabia. En línea punteada se marcan las medias. A la derecha se observan graficadas la media y error estándar de las cuatro variables que mayor peso tienen en la combinación lineal de la primer componente principal.}
+\label{fig:cap3_ArPC1}
+\end{figure}
+
+Para la segunda componente principal de Arabia se tuvo valores F$_{1,49}$ = 4,13, p = 0,048 y $\eta_g^2$ = 0,04. En la Figura \ref{fig:cap3_ArPC2} se puede observar que la media disminuye en el segundo tiempo. A la derecha se puede ver que las variables que mas pesan en la combinación lineal, que son las de sentimiento no tienen diferencias significativas entre ambos tiempos por separado. 
 
 \begin{figure}[h]
     \centering
     \includegraphics[width = 14cm]{figures/ch03/DosTiempos/arabia_PC2.pdf} 
-    \caption{\textbf{(a)}  \textbf{(b)}}
-\label{fig:cap3_cysruido_decaimiento_mt}
+    \caption{Histogramas de la segunda componente principal en el primer y segundo tiempo para la condición de Arabia. En línea punteada se marcan las medias. A la derecha se observan graficadas la media y error estándar de las cuatro variables que mayor peso tienen en la combinación lineal de la segunda componente principal.}
+\label{fig:cap3_ArPC2}
 \end{figure}
+
+Para la condición de CFK se observó diferencias significativas solo en la primer componente principal. El valor del F de ANOVA fue de F$_{1,52}$ = 5,83 con p = 0,019 y $\eta_g^2$ = 0,02. En la Figura \ref{fig:cap3_cfkPC1} se observa que la media disminuye en el segundo tiempo aunque \colorbox{yellow}{no se como decir bien que el eta y p nos dicen que es menos significativo que arabia}. En tanto a las variables mas importantes en la combinación lineal, se ve un comportamiento similar al de Arabia, pero en este caso el número de palabras no tiene diferencias significativas entre ambos tiempos, pero sí la tiene el número de nodos. \colorbox{yellow}{no se bien q decir}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 14cm]{figures/ch03/DosTiempos/cfk_PC1.pdf} 
+    \caption{Histogramas de la primer componente principal en el primer y segundo tiempo para la condición de CFK. En línea punteada se marcan las medias. A la derecha se observan graficadas la media y error estándar de las cuatro variables que mayor peso tienen en la combinación lineal de la primer componente principal.}
+\label{fig:cap3_cfkPC1}
+\end{figure}
+
+Para la condición de presencial solo se tuvo diferencias significativas en la media de la segunda componente principal con F$_{1,47}$ = 5,86, p = 0,019 y $\eta_g^2$ = 0,04. Los resultados se pueden observar en la Figura \ref{fig:cap3_presPC2}. Nuevamente la media disminuye en el segundo tiempo. En este caso a diferencia de Arabia si se observa diferencia significativa entre las medias de las variables mas importantes de la componente principal. En particular se tiene que el relato en el segundo tiempo tiende a una valencia mas neutra, baja la negatividad y sube la positividad. \colorbox{yellow}{creo q nada mas no?}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 14cm]{figures/ch03/DosTiempos/presencial_PC2.pdf} 
+    \caption{Histogramas de la segunda componente principal en el primer y segundo tiempo para la condición de presencial. En línea punteada se marcan las medias. A la derecha se observan graficadas la media y error estándar de las cuatro variables que mayor peso tienen en la combinación lineal de la segunda componente principal.}
+\label{fig:cap3_presPC2}
+\end{figure}
+
+Finalmente para la condición de campeones, el relato mas intenso (\colorbox{yellow}{no se si poner eso aca, pero en discusión si discutir el hecho de que el relato mas intenso es el q no tiene diferencias)} no tiene ninguna componente principal con diferencias significativas.
 

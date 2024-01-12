@@ -443,32 +443,92 @@ INPUT .\figures\ch03\Correlacion\2correlacion_Segunda.pdf
 INPUT .\figures\ch03\Correlacion\2correlacion_Segunda.pdf
 INPUT .\figures\ch03\Correlacion\2correlacion_Segunda.pdf
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb7t.tfm
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
-INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_pres_control_perfil9PCs.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_pres_control_perfil9PCs.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_pres_control_perfil9PCs.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_pres_control_perfil9PCs.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_pres_control_perfil9PCs.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_pres_control_perfil9PCs.pdf
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\RindexyPCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\9PCs_pres_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\silhouette2_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\eleccionPCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\eleccionPCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\eleccionPCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\eleccionPCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\eleccionPCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\eleccionPCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\2PCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\2PCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\2PCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\2PCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\2PCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\2PCs_cfk_pres_ar_control.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Primer tiempo\cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\PCA_clustering\Segundo tiempo\cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf
+INPUT .\figures\ch03\DosTiempos\arabia_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\arabia_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\arabia_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\arabia_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\arabia_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\arabia_PC1.pdf
 INPUT .\figures\ch03\DosTiempos\arabia_PC2.pdf
 INPUT .\figures\ch03\DosTiempos\arabia_PC2.pdf
 INPUT .\figures\ch03\DosTiempos\arabia_PC2.pdf
 INPUT .\figures\ch03\DosTiempos\arabia_PC2.pdf
 INPUT .\figures\ch03\DosTiempos\arabia_PC2.pdf
 INPUT .\figures\ch03\DosTiempos\arabia_PC2.pdf
+INPUT .\figures\ch03\DosTiempos\cfk_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\cfk_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\cfk_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\cfk_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\cfk_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\cfk_PC1.pdf
+INPUT .\figures\ch03\DosTiempos\presencial_PC2.pdf
+INPUT .\figures\ch03\DosTiempos\presencial_PC2.pdf
+INPUT .\figures\ch03\DosTiempos\presencial_PC2.pdf
+INPUT .\figures\ch03\DosTiempos\presencial_PC2.pdf
+INPUT .\figures\ch03\DosTiempos\presencial_PC2.pdf
+INPUT .\figures\ch03\DosTiempos\presencial_PC2.pdf
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
@@ -478,8 +538,14 @@ INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\mnsymbol
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\mnsymbol\MnSymbol8.pfb
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
+INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
+INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmb8a.pfb

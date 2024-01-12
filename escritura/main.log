@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.1.8)  9 JAN 2024 00:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.1.8)  11 JAN 2024 23:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -800,7 +800,7 @@ File: translations-basic-dictionary-spanish.trsl (spanish translation file `tran
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' for `spanish'. on input line 107.
  (sections/titlePage.tex
-<figures/UBA_logo.png, id=35, 1204.5pt x 1204.5pt>
+<figures/UBA_logo.png, id=39, 1204.5pt x 1204.5pt>
 File: figures/UBA_logo.png Graphic file (type png)
 <use figures/UBA_logo.png>
 Package pdftex.def Info: figures/UBA_logo.png  used on input line 5.
@@ -891,12 +891,12 @@ Overfull \hbox (93.9226pt too wide) in paragraph at lines 42--46
 [1
 
 {C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}]
-<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/contenido_op2_boxplot.pdf, id=78, 1445.4pt x 542.025pt>
+<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/contenido_op2_boxplot.pdf, id=83, 1445.4pt x 542.025pt>
 File: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/contenido_op2_boxplot.pdf Graphic file (type pdf)
 <use figures/ch03/Herramientas NPL/Primer tiempo/Sin control/contenido_op2_boxplot.pdf>
 Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/contenido_op2_boxplot.pdf  used on input line 49.
 (pdftex.def)             Requested size: 426.79134pt x 160.04485pt.
-<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/pysentimiento_tresbarras.pdf, id=80, 1084.05pt x 722.7pt>
+<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/pysentimiento_tresbarras.pdf, id=85, 1084.05pt x 722.7pt>
 File: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/pysentimiento_tresbarras.pdf Graphic file (type pdf)
 <use figures/ch03/Herramientas NPL/Primer tiempo/Sin control/pysentimiento_tresbarras.pdf>
 Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/pysentimiento_tresbarras.pdf  used on input line 58.
@@ -905,7 +905,7 @@ Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2 <./figures/ch03/Herramientas NPL/Primer tiempo/Sin control/contenido_op2_boxplot.pdf>]
-<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/sentimiento_op2_boxplot.pdf, id=154, 1300.86pt x 542.025pt>
+<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/sentimiento_op2_boxplot.pdf, id=159, 1300.86pt x 542.025pt>
 File: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/sentimiento_op2_boxplot.pdf Graphic file (type pdf)
 <use figures/ch03/Herramientas NPL/Primer tiempo/Sin control/sentimiento_op2_boxplot.pdf>
 Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/sentimiento_op2_boxplot.pdf  used on input line 71.
@@ -915,18 +915,18 @@ Overfull \hbox (198.68329pt too wide) in paragraph at lines 76--77
 \OT1/ptm/m/n/10.95 ma-yor y la de pre-sen-cial la me-nor. [][][][][][] 
  []
 
-<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/coherencia_vs_t_conmodelonulo.pdf, id=196, 867.24pt x 361.35pt>
+<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/coherencia_vs_t_conmodelonulo.pdf, id=201, 867.24pt x 361.35pt>
 File: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/coherencia_vs_t_conmodelonulo.pdf Graphic file (type pdf)
 <use figures/ch03/Herramientas NPL/Primer tiempo/Sin control/coherencia_vs_t_conmodelonulo.pdf>
 Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/coherencia_vs_t_conmodelonulo.pdf  used on input line 81.
 (pdftex.def)             Requested size: 426.79134pt x 177.82945pt.
 [4 <./figures/ch03/Herramientas NPL/Primer tiempo/Sin control/sentimiento_op2_boxplot.pdf> <./figures/ch03/Herramientas NPL/Primer tiempo/Sin control/coherencia_vs_t_conmodelonulo.pdf>]
-<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales1op2_boxplot.pdf, id=306, 1300.86pt x 542.025pt>
+<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales1op2_boxplot.pdf, id=311, 1300.86pt x 542.025pt>
 File: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales1op2_boxplot.pdf Graphic file (type pdf)
 <use figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales1op2_boxplot.pdf>
 Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales1op2_boxplot.pdf  used on input line 92.
 (pdftex.def)             Requested size: 426.79134pt x 177.82669pt.
-<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales2op2_boxplot.pdf, id=308, 1300.86pt x 542.025pt>
+<figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales2op2_boxplot.pdf, id=313, 1300.86pt x 542.025pt>
 File: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales2op2_boxplot.pdf Graphic file (type pdf)
 <use figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales2op2_boxplot.pdf>
 Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales2op2_boxplot.pdf  used on input line 102.
@@ -935,7 +935,7 @@ Package pdftex.def Info: figures/ch03/Herramientas NPL/Primer tiempo/Sin control
 Underfull \vbox (badness 5504) has occurred while \output is active []
 
  [5 <./figures/ch03/Herramientas NPL/Primer tiempo/Sin control/estructurales1op2_boxplot.pdf>]
-<figures/ch03/Correlacion/2correlacion_Primera.pdf, id=369, 1039.96526pt x 780.51598pt>
+<figures/ch03/Correlacion/2correlacion_Primera.pdf, id=374, 1039.96526pt x 780.51598pt>
 File: figures/ch03/Correlacion/2correlacion_Primera.pdf Graphic file (type pdf)
 <use figures/ch03/Correlacion/2correlacion_Primera.pdf>
 Package pdftex.def Info: figures/ch03/Correlacion/2correlacion_Primera.pdf  used on input line 115.
@@ -948,7 +948,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 2418) has occurred while \output is active []
 
  [7 <./figures/ch03/Correlacion/2correlacion_Primera.pdf>]
-<figures/ch03/Correlacion/2correlacion_Segunda.pdf, id=486, 1039.96526pt x 780.51598pt>
+<figures/ch03/Correlacion/2correlacion_Segunda.pdf, id=491, 1039.96526pt x 780.51598pt>
 File: figures/ch03/Correlacion/2correlacion_Segunda.pdf Graphic file (type pdf)
 <use figures/ch03/Correlacion/2correlacion_Segunda.pdf>
 Package pdftex.def Info: figures/ch03/Correlacion/2correlacion_Segunda.pdf  used on input line 141.
@@ -957,43 +957,145 @@ Package pdftex.def Info: figures/ch03/Correlacion/2correlacion_Segunda.pdf  used
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <./figures/ch03/Correlacion/2correlacion_Segunda.pdf>]
-Overfull \hbox (46.4468pt too wide) in paragraph at lines 155--156
+Overfull \hbox (46.4468pt too wide) in paragraph at lines 156--157
 [][][][][][][] 
  []
 
-<figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf, id=548, 1228.59pt x 505.89pt>
-File: figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf Graphic file (type pdf)
-<use figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf>
-Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf  used on input line 166.
+
+Overfull \hbox (37.15863pt too wide) in paragraph at lines 164--166
+[][][][][][] 
+ []
+
+<figures/ch03/PCA_clustering/Primer tiempo/silhouette2_pres_control_perfil9PCs.pdf, id=555, 1228.59pt x 505.89pt>
+File: figures/ch03/PCA_clustering/Primer tiempo/silhouette2_pres_control_perfil9PCs.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Primer tiempo/silhouette2_pres_control_perfil9PCs.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/silhouette2_pres_control_perfil9PCs.pdf  used on input line 169.
 (pdftex.def)             Requested size: 426.79134pt x 175.73643pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf, id=549, 1156.32pt x 476.98201pt>
+[9]
+<figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf, id=564, 1156.32pt x 476.98201pt>
 File: figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf Graphic file (type pdf)
 <use figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf>
-Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf  used on input line 173.
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf  used on input line 178.
 (pdftex.def)             Requested size: 426.79134pt x 176.05116pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf, id=550, 2168.1pt x 2168.1pt>
+ [10 <./figures/ch03/PCA_clustering/Primer tiempo/silhouette2_pres_control_perfil9PCs.pdf> <./figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf>]
+<figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf, id=666, 1039.96526pt x 780.51598pt>
 File: figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf Graphic file (type pdf)
 <use figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf>
-Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf  used on input line 180.
-(pdftex.def)             Requested size: 426.79134pt x 426.76425pt.
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf  used on input line 189.
+(pdftex.def)             Requested size: 426.79134pt x 320.32327pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11 <./figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf>]
+<figures/ch03/PCA_clustering/Primer tiempo/presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf, id=732, 867.24pt x 433.62pt>
+File: figures/ch03/PCA_clustering/Primer tiempo/presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Primer tiempo/presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf  used on input line 216.
+(pdftex.def)             Requested size: 426.79134pt x 213.39536pt.
+ [12 <./figures/ch03/PCA_clustering/Primer tiempo/presvscontrol_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf>]
+Overfull \hbox (11.23514pt too wide) in paragraph at lines 227--228
+[][][][][][][]\OT1/ptm/m/n/10.95 . Se de-ci-di[]o con-
+ []
+
+<figures/ch03/PCA_clustering/Primer tiempo/silhouette2_cfk_pres_ar_control.pdf, id=775, 1228.59pt x 505.89pt>
+File: figures/ch03/PCA_clustering/Primer tiempo/silhouette2_cfk_pres_ar_control.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Primer tiempo/silhouette2_cfk_pres_ar_control.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/silhouette2_cfk_pres_ar_control.pdf  used on input line 231.
+(pdftex.def)             Requested size: 426.79134pt x 175.73643pt.
+[13 <./figures/ch03/PCA_clustering/Primer tiempo/silhouette2_cfk_pres_ar_control.pdf>]
+<figures/ch03/PCA_clustering/Primer tiempo/eleccionPCs_cfk_pres_ar_control.pdf, id=836, 1228.59pt x 505.89pt>
+File: figures/ch03/PCA_clustering/Primer tiempo/eleccionPCs_cfk_pres_ar_control.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Primer tiempo/eleccionPCs_cfk_pres_ar_control.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/eleccionPCs_cfk_pres_ar_control.pdf  used on input line 241.
+(pdftex.def)             Requested size: 426.79134pt x 175.73643pt.
+<figures/ch03/PCA_clustering/Primer tiempo/2PCs_cfk_pres_ar_control.pdf, id=838, 867.24pt x 722.7pt>
+File: figures/ch03/PCA_clustering/Primer tiempo/2PCs_cfk_pres_ar_control.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Primer tiempo/2PCs_cfk_pres_ar_control.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/2PCs_cfk_pres_ar_control.pdf  used on input line 252.
+(pdftex.def)             Requested size: 426.79134pt x 355.65892pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9]
-<figures/ch03/DosTiempos/arabia_PC2.pdf, id=555, 867.24pt x 476.98201pt>
+<figures/ch03/PCA_clustering/Primer tiempo/cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf, id=840, 867.24pt x 433.62pt>
+File: figures/ch03/PCA_clustering/Primer tiempo/cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Primer tiempo/cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Primer tiempo/cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf  used on input line 280.
+(pdftex.def)             Requested size: 426.79134pt x 213.39536pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (228.6082pt too wide) in paragraph at lines 288--289
+[][][][][][][] 
+ []
+
+
+Underfull \vbox (badness 3189) has occurred while \output is active []
+
+ [14 <./figures/ch03/PCA_clustering/Primer tiempo/eleccionPCs_cfk_pres_ar_control.pdf>]
+<figures/ch03/PCA_clustering/Segundo tiempo/presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf, id=902, 867.24pt x 433.62pt>
+File: figures/ch03/PCA_clustering/Segundo tiempo/presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Segundo tiempo/presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Segundo tiempo/presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf  used on input line 296.
+(pdftex.def)             Requested size: 426.79134pt x 213.39536pt.
+
+Underfull \vbox (badness 7522) has occurred while \output is active []
+
+ [15 <./figures/ch03/PCA_clustering/Primer tiempo/2PCs_cfk_pres_ar_control.pdf>]
+<figures/ch03/PCA_clustering/Segundo tiempo/cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf, id=961, 867.24pt x 433.62pt>
+File: figures/ch03/PCA_clustering/Segundo tiempo/cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf Graphic file (type pdf)
+<use figures/ch03/PCA_clustering/Segundo tiempo/cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf>
+Package pdftex.def Info: figures/ch03/PCA_clustering/Segundo tiempo/cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf  used on input line 324.
+(pdftex.def)             Requested size: 426.79134pt x 213.39536pt.
+ [16 <./figures/ch03/PCA_clustering/Primer tiempo/cfkArCamp_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf> <./figures/ch03/PCA_clustering/Segundo tiempo/presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf>]
+
+LaTeX Warning: Reference `sec:PCAyclustering' on page 17 undefined on input line 352.
+
+[17 <./figures/ch03/PCA_clustering/Segundo tiempo/cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf>]
+<figures/ch03/DosTiempos/arabia_PC1.pdf, id=1080, 867.24pt x 476.98201pt>
+File: figures/ch03/DosTiempos/arabia_PC1.pdf Graphic file (type pdf)
+<use figures/ch03/DosTiempos/arabia_PC1.pdf>
+Package pdftex.def Info: figures/ch03/DosTiempos/arabia_PC1.pdf  used on input line 359.
+(pdftex.def)             Requested size: 398.33858pt x 219.08687pt.
+<figures/ch03/DosTiempos/arabia_PC2.pdf, id=1082, 867.24pt x 476.98201pt>
 File: figures/ch03/DosTiempos/arabia_PC2.pdf Graphic file (type pdf)
 <use figures/ch03/DosTiempos/arabia_PC2.pdf>
-Package pdftex.def Info: figures/ch03/DosTiempos/arabia_PC2.pdf  used on input line 196.
+Package pdftex.def Info: figures/ch03/DosTiempos/arabia_PC2.pdf  used on input line 368.
 (pdftex.def)             Requested size: 398.33858pt x 219.08687pt.
- [10 <./figures/ch03/PCA_clustering/Primer tiempo/silhouette_pres_control.pdf> <./figures/ch03/PCA_clustering/Primer tiempo/RindexyPCs_pres_control.pdf>]
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (156.28252pt too wide) in paragraph at lines 373--374
+\OT1/ptm/m/n/10.95 que la me-dia dis-mi-nu-ye en el se-gun-do tiem-po aun-que [][][][][][].
+ []
+
+<figures/ch03/DosTiempos/cfk_PC1.pdf, id=1084, 867.24pt x 476.98201pt>
+File: figures/ch03/DosTiempos/cfk_PC1.pdf Graphic file (type pdf)
+<use figures/ch03/DosTiempos/cfk_PC1.pdf>
+Package pdftex.def Info: figures/ch03/DosTiempos/cfk_PC1.pdf  used on input line 378.
+(pdftex.def)             Requested size: 398.33858pt x 219.08687pt.
+[18 <./figures/ch03/DosTiempos/arabia_PC1.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/ch03/DosTiempos/presencial_PC2.pdf, id=1132, 867.24pt x 476.98201pt>
+File: figures/ch03/DosTiempos/presencial_PC2.pdf Graphic file (type pdf)
+<use figures/ch03/DosTiempos/presencial_PC2.pdf>
+Package pdftex.def Info: figures/ch03/DosTiempos/presencial_PC2.pdf  used on input line 387.
+(pdftex.def)             Requested size: 398.33858pt x 219.08687pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (366.018pt too wide) in paragraph at lines 392--393
+[]\OT1/ptm/m/n/10.95 Finalmente pa-ra la con-di-ci[]on de cam-peo-nes, el re-la-to mas in-ten-so ([][][][][][]
+ []
 
 )
 
@@ -1001,7 +1103,7 @@ Package glossaries Warning: No \printglossary or \printglossaries found.
 (Remove \makeglossaries if you don't want any glossaries.) 
 This document will not have a glossary.
 
-[11] [12 <./figures/ch03/PCA_clustering/Primer tiempo/9PCs_pres_control.pdf>] [13 <./figures/ch03/DosTiempos/arabia_PC2.pdf>] (main.aux
+[19 <./figures/ch03/DosTiempos/arabia_PC2.pdf>] [20 <./figures/ch03/DosTiempos/cfk_PC1.pdf> <./figures/ch03/DosTiempos/presencial_PC2.pdf>] (main.aux
 LaTeX Info: Redefining \. on input line 30.
 LaTeX Info: Redefining \% on input line 30.
 )
@@ -1009,21 +1111,25 @@ LaTeX Info: Redefining \% on input line 30.
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 72C81E197DCDB99F980FD10CE9E69A2F;2229.
+(rerunfilecheck)             Checksum: 1F9EE525B991A2052FEE524E07A7B66F;2610.
  ) 
 Here is how much of TeX's memory you used:
- 30820 strings out of 475247
- 589900 string characters out of 5756849
- 1930785 words of memory out of 5000000
- 51882 multiletter control sequences out of 15000+600000
+ 30938 strings out of 475247
+ 597243 string characters out of 5756849
+ 1932785 words of memory out of 5000000
+ 51978 multiletter control sequences out of 15000+600000
  588137 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 109i,9n,107p,2440b,942s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/mnsymbol/MnSymbol10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/mnsymbol/MnSymbol8.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 767114 bytes).
+ 109i,11n,107p,2440b,938s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/mnsymbol/MnSymbol10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/mnsymbol/MnSymbol8.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (23 pages, 1057424 bytes).
 PDF statistics:
- 812 PDF objects out of 1000 (max. 8388607)
- 38 named destinations out of 1000 (max. 500000)
- 130 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1322 PDF objects out of 1440 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
+ 188 words of extra memory for PDF output out of 10000 (max. 10000000)
 
