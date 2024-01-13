@@ -316,6 +316,25 @@ def encontrar_intervalos(lista, valor):
 
     return intervalos
 
+# def encontrar_intervalos(lista, valor):
+#     intervalos = []
+#     inicio = None
+
+#     for i, elemento in enumerate(lista):
+#         if elemento == valor:
+#             if inicio is None:
+#                 inicio = lista.index[i]
+#         elif inicio is not None:
+#             intervalos.append((inicio, lista.index[i-1]))
+#             inicio = None
+
+#     # Manejar el caso cuando el último elemento es igual al valor
+#     if inicio is not None:
+#         intervalos.append((inicio, lista.index[-1]))
+
+#     return intervalos
+
+
 def R_clausterizacion(data, k, condicion_labels, indices, kmeans = False, etiquetas_print = False):
     '''
     le das la data ya pasada por PCA o por donde quieras, los labels de las condiciones y los indices
@@ -713,6 +732,15 @@ def indices_condiciones(path, condiciones = None, drop = None):
     ind_cfk = encontrar_intervalos(condicion_labels, 3)
     ind_ar = encontrar_intervalos(condicion_labels, 4)
     ind_fil = encontrar_intervalos(condicion_labels, 5)
+    
+    # #cambio por
+    
+    # ind_camp = encontrar_intervalos(df['Condición'], 1)
+    # ind_pres = encontrar_intervalos(df['Condición'], 2)
+    # ind_cfk = encontrar_intervalos(df['Condición'], 3)
+    # ind_ar = encontrar_intervalos(df['Condición'], 4)
+    # ind_fil = encontrar_intervalos(df['Condición'], 5)
+    
     
     indices = [ind_camp, ind_pres, ind_cfk, ind_ar, ind_fil]
     
@@ -1700,10 +1728,11 @@ kmeans2 = KMeans(n_clusters=k, init = "random",  n_init = 10000, random_state = 
 kmeans2.fit(data_norm)
 R_index2mean = adjusted_rand_score(condicion_labels, kmeans2.labels_) 
 
-
-#%% grafico PC1 vs PC2
 print(f"Indice R con kmeans {k} y PCA: ", R_index2mean)
 etiquetas(kmeans2.labels_, indices_pres_cfk)
+
+#%% grafico PC1 vs PC2
+
 
 centroids = kmeans2.cluster_centers_
 
