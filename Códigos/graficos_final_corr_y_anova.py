@@ -23,7 +23,7 @@ from scipy.stats import t
 
 #%% el santo trial
 
-entrevista = 'Primera'
+entrevista = 'Segunda'
 
 nro_sujetos = 65
 
@@ -458,7 +458,7 @@ for tema in temas:
     
 df_todas = pd.read_csv(path_conautopercepcion_todas)
     
-#%% graficos de boxplot, violinplot o puntos
+#%% lista de variables
 
 variables_label = list(df_todas.columns)
 '''
@@ -487,7 +487,7 @@ for j in range(len(variables_label)):
         
 #%% contenido
 
-path_imagenes = f"C:/Users/Usuario/Desktop/Cori/Tesis/Figuras_finales/{entrevista}_entrevista/Presentacion variables"
+path_imagenes = f"C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/Presentacion variables"
 
 fig, axs = plt.subplots(1,2 , sharex=False, figsize=(15,7.5))
 
@@ -516,21 +516,21 @@ axs[0] =box_subplot4o5(variables[6], control, '$Z_{score}$ del núm de palabras'
 
 axs[1] = box_subplot4o5(variables[11], control, 'Núm. de adjetivos norm.', lettersize = 25, abreviar = True, text_str = "(b)", color = colores, scatter=True, ax = axs[1], text_x = 0.12, text_y = 0.93)
 
-axs[2] = box_subplot4o5(variables[7], control, 'Palabras en primera persona norm.', lettersize = 25, abreviar = True, text_str = "(c)", color = colores, scatter=True, ax = axs[2], text_x = 0.12, text_y = 0.93)
-
+axs[2] = box_subplot4o5(variables[8], control, 'Palabras en tercera persona norm.', lettersize = 25, abreviar = True, text_str = "(c)", color = colores, scatter=True, ax = axs[2], text_x = 0.12, text_y = 0.93)
+axs[2].set_ylim([0.009, 0.11])
 plt.tight_layout()
 
 # Mostrar el gráfico
 plt.show()
 
-save = 'contenido_op2'
+save = 'contenido_op3'
 
 plt.savefig(path_imagenes + f'/{save}_boxplot_transparente.png', transparent = True)
 plt.savefig(path_imagenes + f'/{save}_boxplot.png', transparent = False)
 plt.savefig(path_imagenes + f'/{save}_boxplot.pdf')
 
 #%%
-path_imagenes = f"C:/Users/Usuario/Desktop/Cori/Tesis/Figuras_finales/{entrevista}_entrevista/Presentacion variables"
+path_imagenes = f"C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/{entrevista}_entrevista/Presentacion variables"
 box_plot4o5(variables[6], control, '$Z_{score}$ del núm de palabras', f'{entrevista}_nro_palabras_unicas', path_imagenes = path_imagenes, color = colores)
 box_plot4o5(variables[7], control, 'Palabras en primera persona norm.', f'{entrevista}_primera_persona', path_imagenes = path_imagenes, color = colores)
 box_plot4o5(variables[10], control, 'Núm. de verbos norm.', f'{entrevista}_verb', path_imagenes = path_imagenes, color = colores)
@@ -616,7 +616,7 @@ plt.savefig(path_imagenes + f'/{save}_boxplot.pdf')
 
 fig, axs = plt.subplots(1,3 , sharex=False, figsize=(18,7.5))
 
-axs[0] =box_subplot4o5(variables[24], control, 'Coherencia a d = 3', lettersize = 25, abreviar = True, text_str = "(a)", color = colores, scatter=True, ax = axs[0], text_x = 0.12, text_y = 0.93)
+axs[0] =box_subplot4o5(variables[22], control, 'Coherencia a d = 1', lettersize = 25, abreviar = True, text_str = "(a)", color = colores, scatter=True, ax = axs[0], text_x = 0.12, text_y = 0.93)
 
 axs[1] = box_subplot4o5(variables[25], control, 'Núm. nodos', lettersize = 25, abreviar = True, text_str = "(b)", color = colores, scatter=True, ax = axs[1], text_x = 0.12, text_y = 0.93)
 
@@ -627,7 +627,7 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 
-save = 'estructurales1op2'
+save = 'estructurales1op3'
 
 plt.savefig(path_imagenes + f'/{save}_boxplot_transparente.png', transparent = True)
 plt.savefig(path_imagenes + f'/{save}_boxplot.png', transparent = False)
@@ -640,7 +640,7 @@ fig, axs = plt.subplots(1,3 , sharex=False, figsize=(18,7.5))
 
 axs[0] =box_subplot4o5(variables[35], control, 'Densidad', lettersize = 25, abreviar = True, text_str = "(a)", color = colores, scatter=True, ax = axs[0], text_x = 0.13, text_y = 0.93)
 
-axs[1] = box_subplot4o5(variables[31], control, 'Coeficiente de clustering promedio', lettersize = 25, abreviar = True, text_str = "(b)", color = colores, scatter=True, ax = axs[1], text_x = 0.13, text_y = 0.93)
+axs[1] = box_subplot4o5(variables[30], control, 'ASP', lettersize = 25, abreviar = True, text_str = "(b)", color = colores, scatter=True, ax = axs[1], text_x = 0.13, text_y = 0.93)
 
 axs[2] = box_subplot4o5(variables[36], control, 'Detalles internos', lettersize = 25, abreviar = True, text_str = "(c)", color = colores, scatter=True, ax = axs[2], text_x = 0.12, text_y = 0.93)
 
@@ -649,7 +649,7 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 
-save = 'estructurales2op2'
+save = 'estructurales2op3'
 
 plt.savefig(path_imagenes + f'/{save}_boxplot_transparente.png', transparent = True)
 plt.savefig(path_imagenes + f'/{save}_boxplot.png', transparent = False)
@@ -1046,11 +1046,11 @@ variables_dependientes = list(df_sin_filler.columns)[2:]
 
 #aov = pg.rm_anova(dv = 'Nro palabras únicas', within = 'Condición', subject='Sujetos', data=df, detailed=True, effsize="np2")
 
-vars_1t = ['num_palabras_unicas_norm', 'num adj norm', 'primera_persona_norm','Positivo pysent',
-           'Valencia e intensidad2 pysent',  'Intensidad pysent', 'cohe_norm_d=3', 'num_nodes_LSC',
-           'Comunidades_LSC', 'density', 'average_CC', 'Detalles internos norm']
+vars_1t = ['num_palabras_unicas_norm', 'num adj norm', 'tercera_persona_norm','Positivo pysent',
+           'Valencia e intensidad2 pysent',  'Intensidad pysent', 'cohe_norm_d=1', 'num_nodes_LSC',
+           'Comunidades_LSC', 'density', 'ASP', 'Detalles internos norm']
            
-var = vars_1t[4]
+var = vars_1t[-2]
 
 print(var)
 

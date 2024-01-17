@@ -2218,8 +2218,8 @@ plt.savefig(path_imagenes_cfk_ar_camp + '/eleccionPCs_cfk_pres_ar_control.pdf')
 #de memoria pero las de memoria no tienen diferencias significativas. Siento que son muy pocas igual
 #me gustaría hablarlo con luz
 
-k = 2
-R = R_clausterizacion(X_pca[:,:4], k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
+k = 3
+R = R_clausterizacion(X_pca[:,:], k, condicion_labels, indices_camp_ar_cfk, kmeans = kmeans_TF, etiquetas_print = True)
 print(R)
 
 #%% (*) grafico de PC1 y PC2 (y preeliminares PC1 vs PC2) ACA ESTA pca_cfkArCamp (ninguna figura, podes correr)
