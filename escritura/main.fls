@@ -381,16 +381,19 @@ INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mnsymbol\M
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mnsymbol\MnSymbolD10.tfm
 OUTPUT main.toc
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
-INPUT .\sections\ch3.tex
-INPUT .\sections\ch3.tex
-INPUT sections\ch3.tex
+INPUT .\sections\ch2.tex
+INPUT .\sections\ch2.tex
+INPUT sections\ch2.tex
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb7t.tfm
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
-INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\mnsymbol\MnSymbolD.enc
+INPUT .\sections\ch3.tex
+INPUT .\sections\ch3.tex
+INPUT sections\ch3.tex
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\mnsymbol\MnSymbolC.enc
+INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\mnsymbol\MnSymbolD.enc
 INPUT .\figures\ch03\Herramientas NPL\Primer tiempo\Sin control\contenido_op2_boxplot.pdf
 INPUT .\figures\ch03\Herramientas NPL\Primer tiempo\Sin control\contenido_op2_boxplot.pdf
 INPUT .\figures\ch03\Herramientas NPL\Primer tiempo\Sin control\contenido_op2_boxplot.pdf

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1705028259.38267 "c:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/escritura/main.tex" "main.pdf" "main" 1705028264.91274 0
+["pdflatex"] 1705243626.61785 "c:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/escritura/main.tex" "main.pdf" "main" 1705243631.89206 0
   "C:/Users/Usuario/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1704720580 91068 d22bcba8c7c4e85b07636585e11851ac ""
   "C:/Users/Usuario/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1704720346 24142892 2208a1c03a82be3cb7d0c219da46d999 ""
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -193,7 +193,7 @@
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/tex/latex/xfor/xfor.sty" 1233849756 2689 44855b72da58344b1c1d9b3087bce6ca ""
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "acronyms.tex" 1704729250 474 228e5826446adeaa5391c12337c4894d ""
-  "c:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/escritura/main.tex" 1704729250 5442 7c71f64f6cbf2b2f0acacc9df8f45c10 ""
+  "c:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/escritura/main.tex" 1705243616 5439 13f2b71b0e650786253a918d6a063f41 ""
   "figures/UBA_logo.png" 1704729250 379285 733d3425eaa849b377bddbf1ad50e93c ""
   "figures/ch03/Correlacion/2correlacion_Primera.pdf" 1704729250 39427 e27085d0aff57c2901ccb13cffe29fcb ""
   "figures/ch03/Correlacion/2correlacion_Segunda.pdf" 1704729250 39275 8586850e37b2ca049e4176aadc21c0e3 ""
@@ -218,13 +218,14 @@
   "figures/ch03/PCA_clustering/Segundo tiempo/cfkArCamp_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf" 1704856969 30967 fe0b88ae72b321456fb854a952a43b0d ""
   "figures/ch03/PCA_clustering/Segundo tiempo/presvscontrol_SEGUNDA_ENT_NOenespaciocosine_PC1vsPC2_markersclusters_colortemas.pdf" 1704857804 22950 0f8e0e7ecfffbb02fc02a37321acfeb7 ""
   "iiit_thesis.sty" 1704729250 36042 d293202edd893d30462b8ba7a57c745d ""
-  "main.aux" 1705028264 22168 7700d95a991a08ecf9ac1c80708141c9 "pdflatex"
-  "main.glo" 1705028262 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.out" 1705028264 2610 1f9ee525b991a2052fee524e07a7b66f "pdflatex"
-  "main.slo" 1705028262 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1704729250 5442 7c71f64f6cbf2b2f0acacc9df8f45c10 ""
-  "main.toc" 1705028264 978 2d772a0d7af1cbedf259b2e8f27e6ebf "pdflatex"
-  "sections/ch3.tex" 1705026790 45039 68cbe49107a83b63c61884d7df21c368 ""
+  "main.aux" 1705243631 22985 420b1084e0bc2588e908eeebdd99f51c "pdflatex"
+  "main.glo" 1705243629 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.out" 1705243631 3482 82517a6619696491a786740903660c7d "pdflatex"
+  "main.slo" 1705243629 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1705243616 5439 13f2b71b0e650786253a918d6a063f41 ""
+  "main.toc" 1705243631 1394 6ff97f73562f23faee69b9f619557d1b "pdflatex"
+  "sections/ch2.tex" 1704729250 4118 b362d84e510c366e7182f457ee5d3f45 ""
+  "sections/ch3.tex" 1705243616 45437 c4f3b8b762564676a2f634fbde11e06e ""
   "sections/titlePage.tex" 1704723102 2265 b7aaeeaa615d091bca1497ca7781ea28 ""
   (generated)
   "main.aux"

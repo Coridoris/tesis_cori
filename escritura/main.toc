@@ -1,10 +1,15 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {chapter}{\numberline {1}Resultados}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {1}Materiales y métodos}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Participantes}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Variables de las herramientas de NPL}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Correlación entre las variables del relato y de autopercepción}{6}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Busqueda de los cuantificadores usando PCA y aprendizaje no supervisado (o clustering)}{9}{section.1.4}%
-\contentsline {subsection}{\numberline {A}Memoria autobiográfica contra memoria no consolidada}{9}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {B}Memorias con distinta valencia e intensidad}{12}{subsection.1.4.2}%
-\contentsline {section}{\numberline {1.5}Agrupamiento natural (o clustering) en la segunda entrevista}{15}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Comparación entre ambos tiempos}{17}{section.1.6}%
+\contentsline {section}{\numberline {1.2}Entrevista Autobiográfica}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Herramientas NPL}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Reducción de dimensionalidad y clustering}{2}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Resultados}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Participantes}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Variables de las herramientas de NPL}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Correlación entre las variables del relato y de autopercepción}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Busqueda de los cuantificadores usando PCA y aprendizaje no supervisado (o clustering)}{11}{section.2.4}%
+\contentsline {subsection}{\numberline {A}Memoria autobiográfica contra memoria no consolidada}{11}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {B}Memorias con distinta valencia e intensidad}{14}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Agrupamiento natural (o clustering) en la segunda entrevista}{17}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Comparación entre ambos tiempos}{19}{section.2.6}%
