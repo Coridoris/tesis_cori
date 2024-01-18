@@ -125,17 +125,18 @@ print('Tardo', t_lemm_spacy, 'seg')
 
 import stanza
 
-t0 = time.time()
+#t0 = time.time()
 #stanza.download('es') # descarga el modelo en español
 nlp = stanza.Pipeline('es')
-
-text = texto_sin_sw
+#%%
+#text = texto_sin_sw
+text = "Dijeron que encontraron unas lindas sillas para la mesa"
 doc = nlp(text)
 list_lemmas_stanza = [word.lemma for sent in doc.sentences for word in sent.words]
 
 lemmas_stanza = ' '.join(list_lemmas_stanza)
 
-t1 = time.time()
+#t1 = time.time()
 
 t_lemm_stanza = t1-t0
 print('Tardo', t_lemm_stanza, 'seg')

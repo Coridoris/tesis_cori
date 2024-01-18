@@ -133,6 +133,12 @@ color_iv = [color_1, color_2, color_3, color_4, color_5]
 
 color_iv_dark = [darken_color(color_1), darken_color(color_2), darken_color(color_3), darken_color(color_4)]
 
+color_bi1 = "#688db9"
+color_bi2 = "#ffa424"
+
+color_bi = [color_bi1, color_bi2]
+
+
 path_imagenes = "C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Figuras_finales/Encuestas"
 #%%data edades y genero
 
@@ -147,7 +153,6 @@ genero = df["Género"]
 genero[0] = "Masculino"
 genero[64] = "Femenino"
 genero[38] = "Femenino"
-
 
 
 #%% Edades
@@ -173,12 +178,20 @@ plt.savefig(path_imagenes + '/edades.pdf')
 
 #%% encuesta SAM
 
-path_SAM = "C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Encuesta de Memoria Autobiográfica (Respuestas) 222.csv"
+path_SAM = "C:/Users/Usuario/Desktop/Cori/git tesis/tesis_cori/Encuestas/SAM/Encuesta de Memoria Autobiográfica (Respuestas) 222.csv"
 
 df_SAM = pd.read_csv(path_SAM)
 
 SAM_total = df_SAM["suma total"]
 
+SAM_futuro = df_SAM["suma futuro"]
+
+SAM_espacial = df_SAM["suma espacial"]
+
+SAM_seman = df_SAM["suma semántico"]
+
+SAM_episodico = df_SAM["suma episodico"]
+#%%figura total
 fig, ax2 = plt.subplots(figsize=(8, 8))
 ax2.hist(SAM_total, color = color[0], edgecolor='k')  # Puedes ajustar el número de 'bins' según tus preferencias
 
@@ -196,6 +209,112 @@ plt.show()
 plt.savefig(path_imagenes + '/SAMhist_transparente.png', transparent = True) 
 plt.savefig(path_imagenes + '/SAMhist.png') 
 plt.savefig(path_imagenes + '/SAMhist.pdf') 
+
+#%% edad y episodico y semántico SAM 
+
+# Crear un DataFrame combinado
+data = pd.DataFrame({'SAM semántico': SAM_seman, 'SAM episódico': SAM_episodico})
+boxprops = {'edgecolor': 'black', 'linewidth': 2.5, 'fill': False}
+#personalizar la media bigotes
+medianprops = {'color': 'black', 'linewidth': 3.5}
+whiskerprops = {'color': 'black', 'linewidth': 2}
+#barrita post bigote
+capprops = {'color': 'black', 'linewidth': 2}
+# Crear el boxplot con Seaborn
+
+fig, (ax,ax2) = plt.subplots(1,2, figsize=(12, 5))
+
+
+contador_femenino_edad_rango = []
+contador_masculino_edad_rango = []
+
+edades_rango = [(18,19), (20,21), (22, 23), (24, 25), (26,27), (28,40)]
+for rango in edades_rango:
+    edad_min, edad_max = rango
+    
+    # Filtrar el DataFrame y contar elementos
+    contador_femenino_edad_rango.append(len(df[(df["Género"] == 'Femenino') & (df["Edad"].between(edad_min, edad_max))]))
+    contador_masculino_edad_rango.append(len(df[(df["Género"] == 'Masculino') & (df["Edad"].between(edad_min, edad_max))]))
+    
+edades = ['18-19', '20-21', '22-23', '24-25', '26-27', '28+']
+poblacion_hombres = contador_masculino_edad_rango
+poblacion_mujeres = contador_femenino_edad_rango
+
+# Barras de hombres
+ax.barh(edades, poblacion_hombres, color=color_bi[0],label='Hombres', align='center', alpha = 0.4)
+
+# Barras de mujeres a la izquierda del eje y
+ax.barh(edades, [-x for x in poblacion_mujeres], left=0, color=color_bi[1],label='Mujeres',  align='center', alpha = 0.4)
+
+# Barras de hombres con relleno transparente y bordes con patrón
+ax.barh(edades, poblacion_hombres, color='none', edgecolor=color_bi[0], linewidth=1.5, align='center')
+
+# Barras de mujeres a la izquierda del eje y con relleno transparente y bordes con patrón
+ax.barh(edades, [-x for x in poblacion_mujeres], left=0, color='none', edgecolor=color_bi[1], linewidth=1.5, align='center')
+
+
+# Añadir etiquetas y título
+ax.set_xlabel('Cantidad', fontsize = 20)
+ax.set_ylabel('Edades', fontsize = 20)
+ax.tick_params(axis='both', which='both', labelsize=18)
+
+# Configurar el eje y para que las edades estén en el centro
+ax.set_yticks(np.arange(len(edades)))
+ax.set_yticklabels(edades)
+
+ticks_x = [-20, -15, -10, -5, 0, 5, 10, 15]
+ax.set_xticks(ticks_x)
+ax.set_xticklabels([abs(tick) for tick in ticks_x])  # Hacer los ticks positivos
+
+# Añadir leyenda
+ax.legend(fontsize = 18, loc = "upper right")
+
+
+ax2 = plt.gca()
+
+# Configuración para mostrar los datos como puntos
+sns.stripplot(ax=ax2, data=data, jitter=0.3, palette=color_bi, size=8, alpha=0.85, zorder=0)
+
+# Configuración del boxplot
+sns.boxplot(ax=ax2, data=data, palette=color_bi, boxprops=boxprops, width=0.75, zorder=30,
+            medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops, sym='')
+
+# Ajustar etiquetas y títulos
+ax2.set_ylabel('Puntajes', fontsize=20)
+ax2.set_xticklabels(ax2.get_xticklabels(), fontsize=20)  # Rotar las etiquetas del eje x para mayor claridad
+ax2.set_yticklabels(ax2.get_yticklabels(), fontsize=20)
+
+ax.text(0.13, 0.94, '(a)', transform=ax1.transAxes,
+        fontsize=28, verticalalignment='top', horizontalalignment='right')
+
+ax2.text(0.13, 0.97, '(b)', transform=ax2.transAxes,
+        fontsize=28, verticalalignment='top', horizontalalignment='right')
+
+plt.tight_layout()
+plt.show()
+
+plt.savefig(path_imagenes + '/edad_SAMep_sem_transparente.png', transparent = True) 
+plt.savefig(path_imagenes + '/edad_SAMep_sem.png') 
+plt.savefig(path_imagenes + '/edad_SAMep_sem.pdf') 
+#%% solo episodico y semántico
+# Crear el boxplot y stripplot con Seaborn (intercambiando x e y)
+plt.figure(figsize=(10, 6))
+sns.boxplot(y="Variable", x="Puntajes", data=data.melt(var_name='Variable', value_name='Puntajes'), palette=color_bi, boxprops=boxprops, width=0.75, zorder=30,
+            medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops, sym='')
+sns.stripplot(y="Variable", x="Puntajes", data=data.melt(var_name='Variable', value_name='Puntajes'), jitter=0.3, palette=color_bi, size=8, alpha=0.85, zorder=0)
+
+# Ajustar etiquetas y títulos
+plt.xlabel('Puntajes', fontsize=20)
+plt.ylabel('Puntajes', fontsize=0)
+plt.yticks(fontsize=20)
+plt.xticks(fontsize=20)
+
+plt.tight_layout()
+plt.show()
+
+plt.savefig(path_imagenes + '/SAMep_sem_transparente.png', transparent = True) 
+plt.savefig(path_imagenes + '/SAMep_sem.png') 
+plt.savefig(path_imagenes + '/SAMep_sem.pdf') 
 
 #%% SAM y edad
 
@@ -500,7 +619,7 @@ ax2.text(0.13, 0.97, '(b)', transform=ax2.transAxes,
 plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
-
+#%% guardar
 plt.savefig(path_imagenes + f'/{entrevista}_recuerdoyIntvsVal_transparente.png', transparent = True) 
 plt.savefig(path_imagenes + f'/{entrevista}_recuerdoyIntvsVal.png') 
 plt.savefig(path_imagenes + f'/{entrevista}_recuerdoyIntvsVal.pdf') 
@@ -592,6 +711,8 @@ ax1.tick_params(axis='x', labelsize=18)
 ax1.tick_params(axis='y', labelsize=18)
 
 
+cond2 = ["CFK", "Campeones", "Presencial", "Arabia"]
+color_iv2 = [color_1, color_3, color_4, color_2, color_5]
 
 for i, ind in enumerate([ind_cfk1, ind_camp1, ind_pres1, ind_ar1]):
     if ind != []:
@@ -601,8 +722,8 @@ for i, ind in enumerate([ind_cfk1, ind_camp1, ind_pres1, ind_ar1]):
         std_intensidad1 = stats.sem(intensidad1.loc[ind[0][0]:ind[0][1]])
         std_valencia1 = stats.sem(valencia1.loc[ind[0][0]:ind[0][1]])
 
-        ax2.scatter(mean_intensidad1, mean_valencia1, marker="o", s=100, c=color_iv[i], label=cond[i], alpha = 0.7)
-        ax2.errorbar(mean_intensidad1, mean_valencia1, xerr=std_intensidad1, yerr=std_valencia1, fmt='none', ecolor=color_iv[i], elinewidth=2, capsize=5, alpha = 0.7)
+        ax2.scatter(mean_intensidad1, mean_valencia1, marker="o", s=100, c=color_iv2[i], label=cond2[i], alpha = 0.7)
+        ax2.errorbar(mean_intensidad1, mean_valencia1, xerr=std_intensidad1, yerr=std_valencia1, fmt='none', ecolor=color_iv2[i], elinewidth=2, capsize=5, alpha = 0.7)
 
 for i, ind in enumerate([ind_cfk2, ind_camp2, ind_pres2, ind_ar2]):
     if ind != []:
@@ -612,8 +733,8 @@ for i, ind in enumerate([ind_cfk2, ind_camp2, ind_pres2, ind_ar2]):
         std_intensidad2 = stats.sem(intensidad2.loc[ind[0][0]:ind[0][1]])
         std_valencia2 = stats.sem(valencia2.loc[ind[0][0]:ind[0][1]])
 
-        ax2.scatter(mean_intensidad2, mean_valencia2, marker="o", s=100, c=darken_color(color_iv[i]), alpha = 0.7)
-        ax2.errorbar(mean_intensidad2, mean_valencia2, xerr=std_intensidad2, yerr=std_valencia2, fmt='none', ecolor=darken_color(color_iv[i]), elinewidth=2, capsize=5, alpha = 0.7)
+        ax2.scatter(mean_intensidad2, mean_valencia2, marker="o", s=100, c=darken_color(color_iv2[i]), alpha = 0.7)
+        ax2.errorbar(mean_intensidad2, mean_valencia2, xerr=std_intensidad2, yerr=std_valencia2, fmt='none', ecolor=darken_color(color_iv2[i]), elinewidth=2, capsize=5, alpha = 0.7)
 
 
 ax2.set_xlabel('Media intensidad', fontsize = 20)
@@ -631,7 +752,7 @@ ax2.text(0.13, 0.97, '(b)', transform=ax2.transAxes,
 plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
-
+#%%guardar imagen
 plt.savefig(path_imagenes + '/recuerdoymediaIntvsVal_dost_transparente.png', transparent = True) 
 plt.savefig(path_imagenes + '/recuerdoymediaIntvsVal_dost.png') 
 plt.savefig(path_imagenes + '/recuerdoymediaIntvsVal_dost.pdf') 

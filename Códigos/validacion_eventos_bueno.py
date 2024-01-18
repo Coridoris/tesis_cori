@@ -241,6 +241,39 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 
+#%% figura de ambas juntas
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize = (14, 7))
+
+ax1.bar(temas[:8], np.asarray(recordas[:8])*100, color=color_femenino, alpha=0.85)
+# ax1.set_xlabel('Temas')  # Puedes descomentar esta línea si es necesario
+ax1.set_ylabel('Porcentaje que recuerda (%)', fontsize=20)
+ax1.tick_params(axis='both', which='both', labelsize=18)
+# Rotar etiquetas del eje X para mejorar la legibilidad
+ax1.set_xticklabels(temas[:8], rotation=45, ha="right")
+
+
+ax2.bar(temas, means, yerr=std, color=color_femenino, alpha=0.85)
+# ax2.set_xlabel('Temas')  # Puedes descomentar esta línea si es necesario
+ax2.set_ylabel('Cuánto recuerdan promedio', fontsize=20)
+ax2.tick_params(axis='both', which='both', labelsize=18)
+# Rotar etiquetas del eje X para mejorar la legibilidad
+ax2.set_xticklabels(temas, rotation=45, ha="right")
+
+ax1.text(0.97, 0.97, '(a)', transform=ax1.transAxes,
+        fontsize=28, verticalalignment='top', horizontalalignment='right')
+
+ax2.text(0.97, 0.97, '(b)', transform=ax2.transAxes,
+        fontsize=28, verticalalignment='top', horizontalalignment='right')
+
+plt.tight_layout()
+# Mostrar el gráfico
+plt.show()
+
+plt.savefig(path_imagenes + '/validacion_recuerdo_transparente.png', transparent = True) 
+plt.savefig(path_imagenes + '/validacion_recuerdo.png') 
+plt.savefig(path_imagenes + '/validacion_recuerdo.pdf') 
+
 #%%
 intensidad_arabia = df_validacion['¿Con que intensidad sentis esta emoción? Donde 1 es nada, 5 es mucho.']
 intensidad_francia = df_validacion['¿Con que intensidad sentis esta emoción? Donde 1 es nada, 5 es mucho..1']
@@ -253,4 +286,39 @@ valencia_francia = df_validacion['¿Qué tipo de emociones te genera el recuerdo
 valencia_CFK = df_validacion['¿Qué tipo de emociones te genera el recuerdo?.2'].map(mapeo_emociones)
 valencia_presencial = df_validacion_filtrado['¿Qué tipo de emociones te genera el recuerdo?.10'].map(mapeo_emociones)
 
+cond = ["CFK", "Arabia", "Campeones", "Presencial"]
 
+
+valencia1 = [valencia_CFK.dropna(), valencia_arabia.dropna(), valencia_francia.dropna(), valencia_presencial]
+intensidad1 = [intesidad_CFK.dropna(), intensidad_arabia.dropna(), intensidad_francia.dropna(), intensidad_presencial.dropna()]
+
+
+    
+fig, ax2 = plt.subplots(1, 1, figsize = (14, 5))
+
+
+for i in range(len(valencia1)):
+    mean_intensidad1 = np.nanmean(intensidad1[i])
+    mean_valencia1 = np.nanmean(valencia1[i])
+    
+    std_intensidad1 = np.nanstd(intensidad1[i]/np.sqrt(len(intensidad1[i])))
+    std_valencia1 = np.nanstd(valencia1[i]/np.sqrt(len(valencia1[i])))
+
+    ax2.scatter(mean_intensidad1, mean_valencia1, marker="o", s=100, c=color_iv[i], label=cond[i], alpha = 0.7)
+    ax2.errorbar(mean_intensidad1, mean_valencia1, xerr=std_intensidad1, yerr=std_valencia1, fmt='none', ecolor=color_iv[i], elinewidth=2, capsize=5, alpha = 0.7)
+
+
+ax2.set_xlabel('Media intensidad', fontsize = 20)
+ax2.set_ylabel('Media valencia', fontsize = 20)
+ax2.legend(fontsize = 18, loc = "lower right")
+ax2.tick_params(axis='x', labelsize=18)  
+ax2.tick_params(axis='y', labelsize=18)
+
+
+plt.tight_layout()
+# Mostrar el gráfico
+plt.show()
+
+plt.savefig(path_imagenes + '/validacion_mediaIntvsVal_transparente.png', transparent = True) 
+plt.savefig(path_imagenes + '/validacion_mediaIntvsVal.png') 
+plt.savefig(path_imagenes + '/validacion_mediaIntvsVal.pdf') 
